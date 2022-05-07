@@ -1,0 +1,94 @@
+/*FUNDO*/
+
+.fundo {
+    background-color: var(--branquin);
+}
+
+
+/*FIM FUNDO*/
+
+
+/*GERAL*/
+
+h1 {
+    color: var(--dark);
+}
+
+.menu_titulo {
+    color: var(--branquin);
+}
+
+p {
+    color: var(--dark);
+}
+
+.card_body_geral {
+    background-color: var(--vermelho-fraco);
+    color: var(--branquin);
+}
+
+.card_header_geral {
+    background-color: var(--vermelho-fraco);
+    color: var(--branquin);
+}
+
+.nav-link {
+    color: var(--branquin);
+}
+
+.nav-link:hover {
+    background: var(--rosa);
+    color: var(--branquin);
+}
+
+
+/*FIM GERAL*/
+
+
+/*TOPO*/
+
+.botao_cor {
+    color: var(--branquin);
+}
+
+.botao_cor:hover {
+    background: var(--rosa);
+    color: var(--branquin);
+}
+
+.topo {
+    background-color: var(--vermelho-fraco);
+}
+
+.list-group-item {
+    background: var(--vermelho-fraco);
+    color: var(--branquin);
+}
+
+.list-group-item:hover {
+    background: var(--rosa);
+    color: var(--branquin);
+}
+
+
+/*FIM TOPO*/
+
+
+/*CONFIG MENU*/
+
+.menu_config {
+    background-color: var(--vermelho-fraco);
+}
+
+
+/*FIM CONFIG MENU*/
+
+
+/*DASHBOARD*/
+
+.funcao_user {
+    color: var(--vermelho-fraco);
+}
+
+
+/*FIM DASH*/

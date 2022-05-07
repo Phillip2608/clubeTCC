@@ -1,0 +1,98 @@
+/*FUNDO*/
+
+.fundo {
+    background-color: var(--bg-claro);
+}
+
+
+/*FIM FUNDO*/
+
+
+/*GERAL*/
+
+h1 {
+    color: var(--bg-cinza-escuro);
+}
+
+.menu_titulo {
+    color: var(--bg-claro);
+}
+
+p {
+    color: var(--bg-cinza-escuro);
+}
+
+.card_body_geral {
+    background-color: var(--bg-cinza-forte);
+    color: var(--bg-claro);
+}
+
+.card_header_geral {
+    background-color: var(--bg-cinza-forte);
+    color: var(--bg-claro);
+}
+
+.nav-link {
+    color: var(--bg-claro);
+}
+
+.nav-link:hover {
+    background: var(--bg-claro);
+    color: var(--bg-cinza-escuro);
+}
+
+
+/*FIM GERAL*/
+
+
+/*TOPO*/
+
+.botao_cor {
+    color: var(--bg-claro);
+}
+
+.botao_cor:hover {
+    background: var(--bg-claro);
+    color: var(--bg-cinza-escuro);
+}
+
+.topo {
+    background-color: var(--bg-cinza-forte);
+}
+
+.list-group-item {
+    background: var(--bg-cinza-forte);
+    color: var(--bg-white);
+}
+
+.list-group-item:hover {
+    background: var(--bg-claro);
+    color: var(--bg-cinza-escuro);
+}
+
+
+/*FIM TOPO*/
+
+
+/*CONFIG MENU*/
+
+.menu_config {
+    background-color: var(--bg-cinza-forte);
+}
+
+.cor_config {
+    background-color: var(--bg-claroCinza);
+}
+
+
+/*FIM CONFIG MENU*/
+
+
+/*DASHBOARD*/
+
+.funcao_user {
+    color: var(--bg-amarelo-forte);
+}
+
+
+/*FIM DASHBOARD*/

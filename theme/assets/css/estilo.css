@@ -1,0 +1,270 @@
+/*HOME*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 350;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+}
+
+
+/*FIM-HOME*/
+
+
+/*MENUS*/
+
+.nav-link {
+    transition: .5s;
+    transition-property: background;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    cursor: pointer;
+}
+
+.botao_cor {
+    transition: .5s;
+    transition-property: background;
+}
+
+.input-outline {
+    outline: none;
+}
+
+
+/*FIM-MENUS*/
+
+
+/*MENU LATERAL*/
+
+.modal {
+    width: 300px;
+    transition: .5s;
+    transition-property: left;
+}
+
+.modal-content {
+    width: 300px;
+}
+
+.list-group-item {
+    transition: .5s;
+    transition-property: background;
+}
+
+
+/*FIM-MENU LATERAL*/
+
+
+/*TEMAS*/
+
+.btn-temas {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-temas:hover {
+    transform: scale(1.1);
+}
+
+.cor-roxa {
+    background-color: var(--roxin-escuro);
+}
+
+
+/*FIM TEMAS*/
+
+
+/*MENU-CONFIG-RESPONSIVO*/
+
+.menu_responsivo {
+    display: block;
+}
+
+.menu_cell {
+    display: none;
+}
+
+@media (max-width:770px) {
+    .menu_responsivo {
+        display: none;
+    }
+    .menu_cell {
+        display: flex;
+        justify-content: center;
+    }
+    .titulo-config {
+        text-align: center;
+    }
+    .espaco-vazio {
+        display: none;
+    }
+}
+
+
+/*FIM-MENU CONFIG RESPONSIVO*/
+
+
+/*CADASTRO*/
+
+.btn_redes {
+    transition: .5s;
+}
+
+.btn_redes:hover {
+    transform: scale(1.1);
+}
+
+#insta {
+    background-image: linear-gradient(30deg, #FEDA77, #F58529, #DD2A7B, #8134AF, #515BD4);
+}
+
+
+/*FIM-CADASTRO*/
+
+
+/*DASHBOARD*/
+
+.criar_tcc {
+    background-color: #859CA6;
+    transition: 0.5s;
+    opacity: 0.7;
+}
+
+.criar_tcc:hover {
+    opacity: 1.0;
+    background-color: #859CA6;
+    transform: scale(1.03);
+}
+
+#formTCC {
+    display: none;
+}
+
+.btn-tcc {
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.btn-tcc:hover {
+    opacity: 1.0;
+    transform: scale(1.03);
+}
+
+
+/*FIM DASHBOARD*/
+
+
+/*MODAL FEITO A MAO*/
+
+.modal-inter-fundo {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.modal-inter {
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    height: 450px;
+    animation: animate;
+    animation-duration: 800ms;
+    /* Could be more or less, depending on screen size */
+}
+
+.modal-pesquisa-fundo {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.modal-pesquisa {
+    margin: 14% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    width: 450px;
+    height: 630px;
+    animation: animate;
+    animation-duration: 800ms;
+    /* Could be more or less, depending on screen size */
+}
+
+@keyframes animate {
+    from {
+        opacity: 1;
+    }
+    from {
+        opacity: 0;
+    }
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*FIM MODAL*/

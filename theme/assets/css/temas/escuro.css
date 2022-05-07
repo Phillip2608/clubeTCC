@@ -1,0 +1,95 @@
+/*FUNDO*/
+
+.fundo {
+    background-color: var(--black);
+}
+
+
+/*FIM FUNDO*/
+
+
+/*GERAL*/
+
+h1 {
+    color: var(--bg-white);
+}
+
+.menu_titulo {
+    color: var(--bg-white);
+}
+
+p {
+    color: var(--bg-white);
+}
+
+.card_header_geral {
+    background-color: var(--escuro-fraco);
+    color: var(--bg-white);
+}
+
+.card_body_geral {
+    background-color: var(--escuro-fraco);
+    color: var(--bg-white);
+}
+
+.nav-link {
+    color: var(--bg-white);
+}
+
+.nav-link:hover {
+    background: var(--bg-white);
+    color: var(--black);
+}
+
+
+/*FIM GERAL*/
+
+
+/*TOPO*/
+
+.topo {
+    background-color: var(--escuro-fraco);
+    color: var(--bg-white);
+}
+
+.botao_cor {
+    color: var(--bg-white);
+}
+
+.botao_cor:hover {
+    background: var(--bg-white);
+    color: var(--black);
+}
+
+.list-group-item {
+    background: var(--escuro-fraco);
+    color: var(--bg-white);
+}
+
+.list-group-item:hover {
+    background: var(--bg-white);
+    color: var(--black);
+}
+
+
+/*FIM TOPO*/
+
+
+/*MENU CONFIG*/
+
+.menu_config {
+    background-color: var(--escuro-fraco);
+}
+
+
+/*FIM MENU CONFIG*/
+
+
+/*DASHBOARD*/
+
+.funcao_user {
+    color: var(--bg-amarelo-forte);
+}
+
+
+/*FIM DASHBOARD*/

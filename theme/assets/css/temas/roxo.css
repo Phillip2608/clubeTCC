@@ -1,0 +1,95 @@
+/*FUNDO*/
+
+.fundo {
+    background-color: var(--roxo-lilas);
+}
+
+
+/*FIM FUNDO*/
+
+
+/*GERAL*/
+
+h1 {
+    color: var(--bg-white);
+}
+
+.menu_titulo {
+    color: var(--bg-white);
+}
+
+p {
+    color: var(--bg-white);
+}
+
+.card_header_geral {
+    background-color: var(--roxin-escuro);
+    color: var(--bg-white);
+}
+
+.card_body_geral {
+    background-color: var(--roxin-escuro);
+    color: var(--bg-white);
+}
+
+.nav-link {
+    color: var(--bg-white);
+}
+
+.nav-link:hover {
+    background: var(--roxo-lilas);
+    color: var(--bg-white);
+}
+
+
+/*FIM GERAL*/
+
+
+/*TOPO*/
+
+.topo {
+    background-color: var(--roxo-escurao);
+    color: var(--bg-white);
+}
+
+.botao_cor {
+    color: var(--bg-white);
+}
+
+.botao_cor:hover {
+    background: var(--roxo-lilas);
+    color: var(--bg-white);
+}
+
+.list-group-item {
+    background: var(--roxo-escurao);
+    color: var(--bg-white);
+}
+
+.list-group-item:hover {
+    background: var(--roxo-lilas);
+    color: var(--bg-white);
+}
+
+
+/*FIM TOPO*/
+
+
+/*MENU CONFIG*/
+
+.menu_config {
+    background-color: var(--roxo-escurao);
+}
+
+
+/*FIM MENU CONFIG*/
+
+
+/*DASHBOARD*/
+
+.funcao_user {
+    color: var(--roxin-escuro);
+}
+
+
+/*FIM DASHBOARD*/

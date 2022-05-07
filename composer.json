@@ -1,0 +1,28 @@
+{
+    "name": "luizl/clude-tcc",
+    "description": "Um site para tcc's",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [{
+        "name": "Luiz Phillip D.",
+        "email": "luizlindo2416@gmail.com",
+        "role": "Developer"
+    }],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Config.php"
+        ]
+    },
+    "require": {
+        "coffeecode/router": "1.0.*",
+        "coffeecode/datalayer": "1.1.8",
+        "league/plates": "v3.4.0",
+        "phpmailer/phpmailer": "^6.5"
+    }
+}

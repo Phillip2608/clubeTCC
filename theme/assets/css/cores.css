@@ -1,0 +1,31 @@
+html {
+    /*TEMA CLARO*/
+    --bg-claro: #F2F0F0;
+    --bg-claroCinza: #DDDDDD;
+    --bg-cinza-escuro: #3A515F;
+    --bg-cinza-forte: #2f3d46;
+    --bg-cinza-claro: #859CA6;
+    --bg-amarelo-fraco: #FFD376;
+    --bg-amarelo-forte: #F2AA52;
+    /*TEMA ESCURO*/
+    --bg-white: white;
+    --black: #1c1e21;
+    --escuro-fraco: #212529;
+    /*TEMA AZUL*/
+    --azul-medio: #084F8C;
+    --azul-escuro: #0A2740;
+    --azul-claro: #4E98D9;
+    --verde-agua: #038A7C;
+    --amarelo-dourado: #D9A60D;
+    /*TEMA VERMELHO*/
+    --vermelho-fraco: #BE3B45;
+    --rosa: #F07995;
+    --vermelho-forte: #BE302B;
+    --branquin: #F3F1F3;
+    /*TEMA ROXO*/
+    --roxo-escurao: #443A93;
+    --roxin-escuro: #9070C5;
+    --rosinha-escuro: #A0549F;
+    --rosinha-claro: #B663B5;
+    --roxo-lilas: #CBA5D8;
+}
