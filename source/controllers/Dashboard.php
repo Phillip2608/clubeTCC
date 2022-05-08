@@ -53,7 +53,7 @@ class Dashboard
         $id_tcc = $_SESSION['id_tcc'];
         $id_user = $var[4];
         $tcc = $this->meuTCC($id_tcc);
-        $docs = $this->documentos($id_tcc);
+        $docs = $this->viewDocuments($id_tcc);
         $inter = $this->integrantes3($id_tcc);
         $pesquisas = $this->viewPesquisas3($id_tcc);
 
@@ -147,6 +147,13 @@ class Dashboard
         }
     }
 
+    /**
+     * PESQUISA DE CAMPO
+     * pesquisacampo
+     * editPesquisa
+     * deletePesquisa
+     */
+
     public function pesquisacampo()
     {
         $id_tcc = $_SESSION['id_tcc'];
@@ -234,11 +241,27 @@ class Dashboard
                     redirect("/dashboard/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
                 }
             } else {
-                $dados['pesquisa']->nm_titulo = $dados['titleEdit'];
-                $dados['pesquisa']->ds_link = $dados['linkEdit'];
-                $dados['pesquisa']->ds_pesquisa = $dados['descEdit'];
-                $dados['pesquisa']->save();
-                redirect("/dashboard/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+                $link_curto = explode("/", $dados['linkEdit']);
+                $link_longo = explode("/", $dados['linkEdit']);;
+                if ($link_curto[2] != "forms.gle") {
+                    if ($link_longo[2] == "docs.google.com" || $link_longo[3] == "forms") {
+                        $dados['pesquisa']->nm_titulo = $dados['titleEdit'];
+                        $dados['pesquisa']->ds_link = $dados['linkEdit'];
+                        $dados['pesquisa']->ds_pesquisa = $dados['descEdit'];
+                        $dados['pesquisa']->save();
+                        message('errorEdit', 'Pesquisa editada com sucesso!');
+                        redirect("/dashboard/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+                    }
+                    message('errorEdit', 'Link não suportado', 'alert alert-danger');
+                    redirect("/dashboard/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+                } else {
+                    $dados['pesquisa']->nm_titulo = $dados['titleEdit'];
+                    $dados['pesquisa']->ds_link = $dados['linkEdit'];
+                    $dados['pesquisa']->ds_pesquisa = $dados['descEdit'];
+                    $dados['pesquisa']->save();
+                    message('errorEdit', 'Pesquisa editada com sucesso!');
+                    redirect("/dashboard/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+                }
             }
         } else {
             $dados = [
@@ -261,6 +284,16 @@ class Dashboard
         $pesquisa->delete("id_pesquisa = :pesquisa", $params);
         message('Pesquisa', 'Pesquisa deletada com sucesso!');
         redirect("/dashboard/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
+    }
+
+    /**
+     * DOCUMENTOS
+     * documentos
+     */
+
+    public function documentos()
+    {
+        echo $this->view->render("/documentos");
     }
 
     /**
@@ -383,7 +416,7 @@ class Dashboard
      * documentos
      */
 
-    private function documentos($id_tcc)
+    private function viewDocuments($id_tcc)
     {
         $params = http_build_query(["tcc" => $id_tcc]);
         $docs = (new Docs())->find("id_tcc = :tcc", $params);

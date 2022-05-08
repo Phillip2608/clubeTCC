@@ -49,7 +49,7 @@ class Configure
                     if (empty($formulario['nm_email'])) {
                         $dados['erro_email'] = "Coloca um email, VAGABUNDO!";
                     } else {
-                        $dados['perfil']->im_usuario = URL . "/" . $this->uploadImgUser($img);
+                        $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img, "theme/assets/img/uploads/");
                         $dados['perfil']->nm_usuario = $dados['nome'];
                         $dados['perfil']->nm_apelido = $dados['apelido'];
                         $dados['perfil']->nm_email = $dados['email'];
@@ -70,7 +70,7 @@ class Configure
                 if (strlen($formulario['nm_apelido']) > 14) {
                     $dados['erro_apelido'] = "O apelido deve conter no mínimo 14 digitos";
                 } else {
-                    $dados['perfil']->im_usuario = URL . "/" . $this->uploadImgUser($img);
+                    $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img, "theme/assets/img/uploads/");
                     $dados['perfil']->nm_usuario = $dados['nome'];
                     $dados['perfil']->nm_apelido = $dados['apelido'];
                     $dados['perfil']->nm_email = $dados['email'];
@@ -123,35 +123,6 @@ class Configure
         }
     }
 
-    private function uploadImgUser($img)
-    {
-        if (isset($img)) {
-            if ($img['error']) {
-                return null;
-            }
-
-            if ($img['size'] > 5242880) {
-                die("Arquivo muito grande! Máximo de arquivo 5MB");
-            }
-            $pasta = "theme/assets/img/uploads/";
-            $nm_arquivo = $img['name'];
-            $new_arquivo = uniqid();
-            $extensao = strtolower(pathinfo($nm_arquivo, PATHINFO_EXTENSION));
-            $path = $pasta . $new_arquivo . "." . $extensao;
-
-            if ($extensao != "jpg" && $extensao != "png" && $extensao != "gif" && $extensao != "jpeg") {
-                return null;
-            }
-
-            $move_file = move_uploaded_file($img["tmp_name"], $path);
-            if ($move_file) {
-                return $path;
-            } else {
-                return null;
-            }
-        }
-    }
-
     private function viewPerfil($id_user)
     {
         $params = http_build_query([":id" => $id_user]);
@@ -160,7 +131,4 @@ class Configure
         return $result;
     }
 
-    private function addImgUpload()
-    {
-    }
 }
