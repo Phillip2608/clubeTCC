@@ -49,16 +49,29 @@ class Configure
                     if (empty($formulario['nm_email'])) {
                         $dados['erro_email'] = "Coloca um email, VAGABUNDO!";
                     } else {
-                        $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img, "theme/assets/img/uploads/");
-                        $dados['perfil']->nm_usuario = $dados['nome'];
-                        $dados['perfil']->nm_apelido = $dados['apelido'];
-                        $dados['perfil']->nm_email = $dados['email'];
-                        $dados['perfil']->save();
+                        if ($img['name'] == null) {
+                            $img = $dados['perfil']->im_usuario;
+                            $dados['perfil']->nm_usuario = $dados['nome'];
+                            $dados['perfil']->nm_apelido = $dados['apelido'];
+                            $dados['perfil']->nm_email = $dados['email'];
+                            $dados['perfil']->save();
 
-                        $_SESSION['nm_usuario'] = $dados['nome'];
-                        $_SESSION['nm_apelido'] = $dados['apelido'];
-                        $_SESSION['nm_email'] = $dados['email'];
-                        $_SESSION['im_usuario'] = $dados['perfil']->im_usuario;
+                            $_SESSION['nm_usuario'] = $dados['nome'];
+                            $_SESSION['nm_apelido'] = $dados['apelido'];
+                            $_SESSION['nm_email'] = $dados['email'];
+                        } else {
+                            $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img['error'], $img['size'], $img['name'], $img['tmp_name'], "theme/assets/img/uploads/imgUpload/");
+                            $dados['perfil']->nm_usuario = $dados['nome'];
+                            $dados['perfil']->nm_apelido = $dados['apelido'];
+                            $dados['perfil']->nm_email = $dados['email'];
+                            $dados['perfil']->save();
+
+                            $_SESSION['nm_usuario'] = $dados['nome'];
+                            $_SESSION['nm_apelido'] = $dados['apelido'];
+                            $_SESSION['nm_email'] = $dados['email'];
+                            $_SESSION['im_usuario'] = $dados['perfil']->im_usuario;
+                        }
+
                         //redirect("/configuracao/geral/" . $_SESSION['id_usuario'], $dados);
                     }
                 }
@@ -70,16 +83,28 @@ class Configure
                 if (strlen($formulario['nm_apelido']) > 14) {
                     $dados['erro_apelido'] = "O apelido deve conter no mínimo 14 digitos";
                 } else {
-                    $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img, "theme/assets/img/uploads/");
-                    $dados['perfil']->nm_usuario = $dados['nome'];
-                    $dados['perfil']->nm_apelido = $dados['apelido'];
-                    $dados['perfil']->nm_email = $dados['email'];
-                    $dados['perfil']->save();
+                    if ($img['name'] == null) {
+                        $img = $dados['perfil']->im_usuario;
+                        $dados['perfil']->nm_usuario = $dados['nome'];
+                        $dados['perfil']->nm_apelido = $dados['apelido'];
+                        $dados['perfil']->nm_email = $dados['email'];
+                        $dados['perfil']->save();
 
-                    $_SESSION['nm_usuario'] = $dados['nome'];
-                    $_SESSION['nm_apelido'] = $dados['apelido'];
-                    $_SESSION['nm_email'] = $dados['email'];
-                    $_SESSION['im_usuario'] = $dados['perfil']->im_usuario;
+                        $_SESSION['nm_usuario'] = $dados['nome'];
+                        $_SESSION['nm_apelido'] = $dados['apelido'];
+                        $_SESSION['nm_email'] = $dados['email'];
+                    } else {
+                        $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img['error'], $img['size'], $img['name'], $img['tmp_name'], "theme/assets/img/uploads/imgUpload/");
+                        $dados['perfil']->nm_usuario = $dados['nome'];
+                        $dados['perfil']->nm_apelido = $dados['apelido'];
+                        $dados['perfil']->nm_email = $dados['email'];
+                        $dados['perfil']->save();
+
+                        $_SESSION['nm_usuario'] = $dados['nome'];
+                        $_SESSION['nm_apelido'] = $dados['apelido'];
+                        $_SESSION['nm_email'] = $dados['email'];
+                        $_SESSION['im_usuario'] = $dados['perfil']->im_usuario;
+                    }
                     //redirect("/configuracao/geral/" . $_SESSION['id_usuario'], $dados);
 
                 }
@@ -130,5 +155,4 @@ class Configure
         $result = $perfil->fetch();
         return $result;
     }
-
 }

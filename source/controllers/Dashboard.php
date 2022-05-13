@@ -293,7 +293,21 @@ class Dashboard
 
     public function documentos()
     {
-        echo $this->view->render("/documentos");
+        if (isset($_FILES['file_docs'])) {
+            $files = $_FILES['file_docs'];
+            $tudo_certo = true;
+            foreach ($files['name'] as $index => $arq) {
+                $deu_certo = uploadArquivo($files['erro'][$index], $files['size'][$index], $files['name'][$index], $files['tmp_name'][$index], "theme/assets/img/uploads/imgUpload/");
+                if (!$deu_certo) $tudo_certo = false;
+            }
+            if ($tudo_certo) message('DocsOK', 'Documentos enviados com sucesso!');
+            else message('DocsOK', 'Falha ao enviar todos os arquivos!');
+        }
+        $dados = [
+            'titulo' => 'Documentos'
+        ];
+
+        echo $this->view->render("/documentos", ['dados' => $dados]);
     }
 
     /**

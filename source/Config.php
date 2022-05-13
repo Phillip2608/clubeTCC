@@ -59,31 +59,38 @@ function message($nome, $texto = null, $classe = null)
     }
 }
 
-function uploadArquivo($arquivo, $caminho)
+function uploadArquivo($error,$size ,$name, $tmp_name)
 {
-    if (isset($arquivo)) {
-        if ($arquivo['error']) {
-            return null;
-        }
 
-        if ($arquivo['size'] > 5242880) {
-            die("Arquivo muito grande! Máximo de arquivo 5MB");
-        }
-        $pasta = $caminho;
-        $nm_arquivo = $arquivo['name'];
-        $new_arquivo = uniqid();
-        $extensao = strtolower(pathinfo($nm_arquivo, PATHINFO_EXTENSION));
-        $path = $pasta . $new_arquivo . "." . $extensao;
+    if ($error) {
+        die("Fala ao enviar arquivo");
+    }
 
-        if ($extensao != "jpg" && $extensao != "png" && $extensao != "gif" && $extensao != "jpeg") {
-            return null;
-        }
+    if ($size > 5242880) {
+        die("Arquivo muito grande! Máximo de arquivo 5MB");
+    }
+    $nm_arquivo = $name;
+    $new_arquivo = uniqid();
+    $extensao = strtolower(pathinfo($nm_arquivo, PATHINFO_EXTENSION));
+    
+    if ($extensao != "jpg" && $extensao != "png" && $extensao != "gif" && $extensao != "jpeg" && $extensao != "pdf" && $extensao != "txt" && $extensao != "ppt") {
+        return null;
+    }elseif($extensao == "jpg" || $extensao == "png" || $extensao == "gif" || $extensao == "jpeg"){
+        $pasta = "theme/assets/img/uploads/imgUpload/";
+    }elseif($extensao == "pdf"){
+        $pasta = "theme/assets/img/uploads/pdfUpload/";
+    }elseif($extensao == "txt"){
+        $pasta = "theme/assets/img/uploads/txtUpload/";
+    }
+    elseif($extensao == "ppt"){
+        $pasta = "theme/assets/img/uploads/pptUpload/";
+    }
 
-        $move_file = move_uploaded_file($arquivo["tmp_name"], $path);
-        if ($move_file) {
-            return $path;
-        } else {
-            return null;
-        }
+    $path = $pasta . $new_arquivo . "." . $extensao;
+    $move_file = move_uploaded_file($tmp_name, $path);
+    if ($move_file) {
+        return $path;
+    } else {
+        return null;
     }
 }

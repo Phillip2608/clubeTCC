@@ -71,6 +71,7 @@ $router->post("/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", 
 $router->post("/editSearch/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:editPesquisa", "dashboard.editPesquisa");
 $router->post("/deletSearch/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:deletePesquisa", "dashboard.deletePesquisa");
 $router->get("/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:documentos", "dashboard.documentos");
+$router->post("/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:documentos", "dashboard.documentos");
 /**
  * ERROS
  */
