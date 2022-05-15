@@ -9,6 +9,7 @@ use Source\models\Funcao;
 use Source\models\Integrante;
 use Source\models\Pesquisas;
 use Source\models\TCC;
+use Source\models\tipoDocs;
 
 class Dashboard
 {
@@ -293,19 +294,37 @@ class Dashboard
 
     public function documentos()
     {
+        $allDocs = $this->viewDocuments($_SESSION['id_tcc']);
         if (isset($_FILES['file_docs'])) {
+            $dados = [
+                'titulo' => 'Documentos',
+                'docs' => $allDocs
+            ];
+            
             $files = $_FILES['file_docs'];
             $tudo_certo = true;
             foreach ($files['name'] as $index => $arq) {
                 $deu_certo = uploadArquivo($files['erro'][$index], $files['size'][$index], $files['name'][$index], $files['tmp_name'][$index], "theme/assets/img/uploads/imgUpload/");
+
+                $extensao = strtolower(pathinfo($files['name'][$index], PATHINFO_EXTENSION));
+
+                $tipoDocs = $this->tipoDocs($extensao);
+
+                $this->newDocument($_SESSION['id_tcc'],$tipoDocs->id_tipoDocs, $files['name'][$index]);
+                
                 if (!$deu_certo) $tudo_certo = false;
             }
-            if ($tudo_certo) message('DocsOK', 'Documentos enviados com sucesso!');
-            else message('DocsOK', 'Falha ao enviar todos os arquivos!');
+            if ($tudo_certo){
+                message('DocsOK', 'Documentos enviados com sucesso!');
+                redirect("/dashboard/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
+            } else message('DocsOK', 'Falha ao enviar todos os arquivos!');
+        }else{
+            $dados = [
+                'titulo' => 'Documentos',
+                'docs' => $allDocs
+            ];
         }
-        $dados = [
-            'titulo' => 'Documentos'
-        ];
+        
 
         echo $this->view->render("/documentos", ['dados' => $dados]);
     }
@@ -427,13 +446,30 @@ class Dashboard
 
     /**
      * DOCUMENTOS
-     * documentos
+     * newDocument
+     * viewDocuments
+     * tipoDocs
      */
+
+    private function newDocument($id_tcc,$id_tipoDocs, $nm_docs){
+        $docs = new Docs();
+        $docs->id_tcc = $id_tcc;
+        $docs->id_tipoDocs = $id_tipoDocs;
+        $docs->nm_documento = $nm_docs;
+        $docs->save();
+    }
 
     private function viewDocuments($id_tcc)
     {
         $params = http_build_query(["tcc" => $id_tcc]);
-        $docs = (new Docs())->find("id_tcc = :tcc", $params);
+        $docs = (new Docs())->find("id_tcc = :tcc", $params, 'INNER JOIN tb_tipodocs ON tb_documento.id_tipoDocs = tb_tipodocs.id_tipoDocs');
+        $result = $docs->fetch(true);
+        return $result;
+    }
+
+    private function tipoDocs($extensao){
+        $params = http_build_query(["docs" => $extensao]);
+        $docs = (new tipoDocs())->find("nm_tipoDocs = :docs", $params);
         $result = $docs->fetch();
         return $result;
     }

@@ -93,4 +93,27 @@ function uploadArquivo($error,$size ,$name, $tmp_name)
     } else {
         return null;
     }
+
+    function reduzirDocs($nm_docs, $extensao){
+        $minusculasNM = strtolower($nm_docs);
+        $minusculasEX = strtolower($extensao);
+        if($minusculasNM > 12){
+            if ($minusculasEX == "txt") {
+                $titulo_doc = substr($minusculasNM, 0, 5);
+                echo $titulo_doc . $minusculasEX;
+            } elseif ($minusculasEX == "ppt") {
+                $titulo_doc = substr($minusculasNM, 0, 5);
+                echo $titulo_doc . $minusculasEX;
+            } elseif ($minusculasEX == "pdf") {
+                $titulo_doc = substr($minusculasNM, 0, 5);
+                echo $titulo_doc . $extensao;
+            }elseif($minusculasEX == "png" || $minusculasEX == "gif" || $minusculasEX == "jpg" || $minusculasEX == "jpeg"){
+                $titulo_doc = substr($minusculasNM, 0, 5);
+                echo $titulo_doc . $extensao;
+            }else{
+                echo "Arquivo não encontrado ou inválido";
+            }
+        }
+
+    }
 }
