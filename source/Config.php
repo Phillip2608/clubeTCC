@@ -59,7 +59,7 @@ function message($nome, $texto = null, $classe = null)
     }
 }
 
-function uploadArquivo($error,$size ,$name, $tmp_name)
+function uploadArquivo($error,$size ,$name, $tmp_name, $id_arquivo)
 {
 
     if ($error) {
@@ -70,7 +70,7 @@ function uploadArquivo($error,$size ,$name, $tmp_name)
         die("Arquivo muito grande! Máximo de arquivo 5MB");
     }
     $nm_arquivo = $name;
-    $new_arquivo = uniqid();
+    $new_arquivo = $id_arquivo;
     $extensao = strtolower(pathinfo($nm_arquivo, PATHINFO_EXTENSION));
     
     if ($extensao != "jpg" && $extensao != "png" && $extensao != "gif" && $extensao != "jpeg" && $extensao != "pdf" && $extensao != "txt" && $extensao != "ppt") {

@@ -54,7 +54,7 @@ class Dashboard
         $id_tcc = $_SESSION['id_tcc'];
         $id_user = $var[4];
         $tcc = $this->meuTCC($id_tcc);
-        $docs = $this->viewDocuments($id_tcc);
+        $docs = $this->viewDocument3($id_tcc);
         $inter = $this->integrantes3($id_tcc);
         $pesquisas = $this->viewPesquisas3($id_tcc);
 
@@ -300,24 +300,25 @@ class Dashboard
                 'titulo' => 'Documentos',
                 'docs' => $allDocs
             ];
-            
+
             $files = $_FILES['file_docs'];
             $tudo_certo = true;
             foreach ($files['name'] as $index => $arq) {
-                $deu_certo = uploadArquivo($files['erro'][$index], $files['size'][$index], $files['name'][$index], $files['tmp_name'][$index], "theme/assets/img/uploads/imgUpload/");
-
+                $new_name = uniqid();
+                $deu_certo = uploadArquivo($files['erro'][$index], $files['size'][$index], $files['name'][$index], $files['tmp_name'][$index], $new_name);
                 $extensao = strtolower(pathinfo($files['name'][$index], PATHINFO_EXTENSION));
+                $new_path = $new_name.'.'.$extensao;
 
                 $tipoDocs = $this->tipoDocs($extensao);
 
-                $this->newDocument($_SESSION['id_tcc'],$tipoDocs->id_tipoDocs, $files['name'][$index]);
+                $this->newDocument($_SESSION['id_tcc'],$tipoDocs->id_tipoDocs, $files['name'][$index], $new_path);
                 
                 if (!$deu_certo) $tudo_certo = false;
             }
             if ($tudo_certo){
                 message('DocsOK', 'Documentos enviados com sucesso!');
                 redirect("/dashboard/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
-            } else message('DocsOK', 'Falha ao enviar todos os arquivos!');
+            } else message('DocsOK', 'Falha ao enviar todos os arquivos!', 'alert alert-danger');
         }else{
             $dados = [
                 'titulo' => 'Documentos',
@@ -327,6 +328,15 @@ class Dashboard
         
 
         echo $this->view->render("/documentos", ['dados' => $dados]);
+    }
+
+    public function deletDocs(){
+        $id_docs = $_POST['idDocs'];
+        $pesquisa = $this->viewDocument($id_docs);
+        $params = http_build_query([":docs" => $id_docs]);
+        $pesquisa->delete("id_documento = :docs", $params);
+        message('DocsOK', 'Arquivo excluido com sucesso!');
+        redirect("/dashboard/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
     }
 
     /**
@@ -451,18 +461,34 @@ class Dashboard
      * tipoDocs
      */
 
-    private function newDocument($id_tcc,$id_tipoDocs, $nm_docs){
+    private function newDocument($id_tcc,$id_tipoDocs, $nm_docs, $nm_newName){
         $docs = new Docs();
         $docs->id_tcc = $id_tcc;
         $docs->id_tipoDocs = $id_tipoDocs;
         $docs->nm_documento = $nm_docs;
+        $docs->nm_newName = $nm_newName;
         $docs->save();
+    }
+
+    private function viewDocument($id_docs){
+        $params = http_build_query(["docs" => $id_docs]);
+        $docs = (new Docs())->find("id_documento = :docs", $params);
+        $result = $docs->fetch();
+        return $result;
     }
 
     private function viewDocuments($id_tcc)
     {
         $params = http_build_query(["tcc" => $id_tcc]);
-        $docs = (new Docs())->find("id_tcc = :tcc", $params, 'INNER JOIN tb_tipodocs ON tb_documento.id_tipoDocs = tb_tipodocs.id_tipoDocs');
+        $docs = (new Docs())->find("id_tcc = :tcc", $params, 'INNER JOIN tb_tipodocs ON tb_documento.id_tipoDocs = tb_tipodocs.id_tipoDocs')->order('tb_tipodocs.id_tipoDocs');
+        $result = $docs->fetch(true);
+        return $result;
+    }
+
+    private function viewDocument3($id_tcc)
+    {
+        $params = http_build_query(["tcc" => $id_tcc]);
+        $docs = (new Docs())->find("id_tcc = :tcc", $params, 'INNER JOIN tb_tipodocs ON tb_documento.id_tipoDocs = tb_tipodocs.id_tipoDocs')->order('tb_tipodocs.id_tipoDocs')->limit(4);
         $result = $docs->fetch(true);
         return $result;
     }
@@ -473,7 +499,6 @@ class Dashboard
         $result = $docs->fetch();
         return $result;
     }
-
 
     /**
      * CARGO
