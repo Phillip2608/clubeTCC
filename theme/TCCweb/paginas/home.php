@@ -6,7 +6,6 @@
         <img src="<?= TCC ?>" width="120" height="120">
         <p class="lead">Seja bem vindo ao Clube do TCC, aproveite as maravilhas que
           nós temos a proporcionar a você</p>
-          <?= $_SESSION['nm_email']; ?>
       </div>
     </div>
   </div>

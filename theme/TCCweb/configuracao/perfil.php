@@ -8,7 +8,13 @@
                     <h3 class="mx-4">Dados</h3>
                     <form action="<?= $router->route("configure.perfil"); ?>" class="container my-4 row" method="POST" enctype="multipart/form-data">
                         <div class="my-1 d-flex align-items-center" id="myBtn">
-                            <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" alt="" width="100" height="100" class="bg-secondary rounded-circle p-0 btn" id="img_att">
+                            <img src="<?php if ($_SESSION['im_usuario'] == null) {
+                                            echo ICON . "/person.png";
+                                        } elseif ($_SESSION['im_usuario'] == URL . "/") {
+                                            echo ICON . "/person.png";
+                                        } else {
+                                            echo $_SESSION['im_usuario'];
+                                        } ?>" alt="" width="100" height="100" class="bg-secondary rounded-circle p-0 btn" id="img_att">
                             <input type="file" name="im_usuario" class="d-none" id="select_file" accept="image/*">
                         </div>
                         <label for="exampleFormControlInput1" class="form-label my-2">Clique na imagem para alterar</label>

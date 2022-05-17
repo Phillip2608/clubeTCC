@@ -64,6 +64,7 @@ $router->group("dashboard");
 $router->get("/index/{$_SESSION['id_usuario']}", "Dashboard:index", "dashboard.index");
 $router->post("/index/{$_SESSION['id_usuario']}", "Dashboard:index", "dashboard.index");
 $router->get("/geral/{$_SESSION['id_usuario']}/{idtcc}", "Dashboard:geral", "dashboard.geral");
+$router->post("/geral/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:geral", "dashboard.geralATT");
 $router->get("/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:dadosgerais", "dashboard.dadosgerais");
 $router->post("/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:dadosgerais", "dashboard.dadosgerais");
 $router->get("/pesquisacampo/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", "Dashboard:pesquisacampo", "dashboard.pesquisacampo");

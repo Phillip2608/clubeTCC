@@ -59,7 +59,7 @@ function message($nome, $texto = null, $classe = null)
     }
 }
 
-function uploadArquivo($error,$size ,$name, $tmp_name, $id_arquivo)
+function uploadArquivo($error,$size ,$name, $tmp_name, $id_arquivo = null)
 {
 
     if ($error) {

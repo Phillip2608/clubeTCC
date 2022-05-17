@@ -57,42 +57,62 @@ class Dashboard
         $docs = $this->viewDocument3($id_tcc);
         $inter = $this->integrantes3($id_tcc);
         $pesquisas = $this->viewPesquisas3($id_tcc);
-
         $umInter = $this->UMintegrante($id_user, $id_tcc);
-        if ($umInter->id_tcc == $id_tcc) {
+        $img_banner = $_FILES['img_banner'];
+        
+        if($img_banner != null){
             $dados = [
                 'titulo' => 'Visão Geral',
                 'tcc' => $tcc,
-                'docs' => $docs,
-                'inter' => $inter,
-                'pesquisas' => $pesquisas
-            ];
-            if (isset($dados['tcc']->id_tcc)) {
-                if ($dados['tcc']->id_usuario == $id_user) {
-                    echo $this->view->render("/geral", ["dados" => $dados]);
-                } else {
-                    redirect("/dashboard/index/" . $id_user, $dados);
-                }
-            }
-        } else {
-            $this->addUserInter($id_user, $id_tcc, 1);
-            $dados = [
-                'titulo' => 'Visão Geral',
-                'tcc' => $tcc,
-                'docs' => $docs,
-                'inter' => $inter,
-                'pesquisas' => $pesquisas
+                'img_banner' => $img_banner
             ];
 
+            var_dump($dados['img_banner']);
 
-            if (isset($dados['tcc']->id_tcc)) {
-                if ($dados['tcc']->id_usuario == $id_user) {
-                    echo $this->view->render("/geral", ["dados" => $dados]);
-                } else {
-                    redirect("/dashboard/index/" . $id_user, $dados);
+            $new_name = uniqid();
+            $extensao = strtolower(pathinfo($img_banner['name'], PATHINFO_EXTENSION));
+            uploadArquivo($img_banner['erro'], $img_banner['size'], $img_banner['name'], $img_banner['tmp_name'], $new_name);
+
+            $tcc->im_banner = $new_name.'.'.$extensao;
+            $tcc->save();
+            message("bannerOK", "TCC atualizado com sucesso!");
+            redirect("/dashboard/geral/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+        }else{
+            if ($umInter->id_tcc == $id_tcc) {
+                $dados = [
+                    'titulo' => 'Visão Geral',
+                    'tcc' => $tcc,
+                    'docs' => $docs,
+                    'inter' => $inter,
+                    'pesquisas' => $pesquisas
+                ];
+                if (isset($dados['tcc']->id_tcc)) {
+                    if ($dados['tcc']->id_usuario == $id_user) {
+                        echo $this->view->render("/geral", ["dados" => $dados]);
+                    } else {
+                        redirect("/dashboard/index/" . $id_user, $dados);
+                    }
+                }
+            } else {
+                $this->addUserInter($id_user, $id_tcc, 1);
+                $dados = [
+                    'titulo' => 'Visão Geral',
+                    'tcc' => $tcc,
+                    'docs' => $docs,
+                    'inter' => $inter,
+                    'pesquisas' => $pesquisas
+                ];
+    
+    
+                if (isset($dados['tcc']->id_tcc)) {
+                    if ($dados['tcc']->id_usuario == $id_user) {
+                        echo $this->view->render("/geral", ["dados" => $dados]);
+                    } else {
+                        redirect("/dashboard/index/" . $id_user, $dados);
+                    }
                 }
             }
-        }
+        }    
     }
 
     public function dadosgerais()

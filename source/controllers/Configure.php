@@ -60,7 +60,8 @@ class Configure
                             $_SESSION['nm_apelido'] = $dados['apelido'];
                             $_SESSION['nm_email'] = $dados['email'];
                         } else {
-                            $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img['error'], $img['size'], $img['name'], $img['tmp_name'], "theme/assets/img/uploads/imgUpload/");
+                            $new_name = uniqid();
+                            $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img['error'], $img['size'], $img['name'], $img['tmp_name'], $new_name);
                             $dados['perfil']->nm_usuario = $dados['nome'];
                             $dados['perfil']->nm_apelido = $dados['apelido'];
                             $dados['perfil']->nm_email = $dados['email'];
@@ -94,7 +95,8 @@ class Configure
                         $_SESSION['nm_apelido'] = $dados['apelido'];
                         $_SESSION['nm_email'] = $dados['email'];
                     } else {
-                        $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img['error'], $img['size'], $img['name'], $img['tmp_name'], "theme/assets/img/uploads/imgUpload/");
+                        $new_name = uniqid();
+                        $dados['perfil']->im_usuario = URL . "/" . uploadArquivo($img['error'], $img['size'], $img['name'], $img['tmp_name'], $new_name);
                         $dados['perfil']->nm_usuario = $dados['nome'];
                         $dados['perfil']->nm_apelido = $dados['apelido'];
                         $dados['perfil']->nm_email = $dados['email'];
