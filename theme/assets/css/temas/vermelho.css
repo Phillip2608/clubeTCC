@@ -10,6 +10,14 @@
 
 /*GERAL*/
 
+.color-slider {
+    background-color: var(--vermelho-fraco);
+}
+
+.cor_letras_body {
+    color: var(--dark);
+}
+
 h1 {
     color: var(--dark);
 }

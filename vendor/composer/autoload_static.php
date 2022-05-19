@@ -23,6 +23,10 @@ class ComposerStaticInit385ace5c2e08955f7e50bf2c7d9cce81
         array (
             'League\\Plates\\' => 14,
         ),
+        'G' => 
+        array (
+            'Gumlet\\' => 7,
+        ),
         'C' => 
         array (
             'CoffeeCode\\Router\\' => 18,
@@ -42,6 +46,10 @@ class ComposerStaticInit385ace5c2e08955f7e50bf2c7d9cce81
         'League\\Plates\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/plates/src',
+        ),
+        'Gumlet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gumlet/php-image-resize/lib',
         ),
         'CoffeeCode\\Router\\' => 
         array (

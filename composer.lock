@@ -4,9 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee3cb77b6ee43917da2a13f98f33ef99",
-    "packages": [
-        {
+    "content-hash": "18fb6654dbb92a1bcef44e3e4309f941",
+    "packages": [{
             "name": "coffeecode/datalayer",
             "version": "1.1.8",
             "source": {
@@ -34,13 +33,11 @@
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Robson V. Leite",
-                    "email": "cursos@upinside.com.br",
-                    "role": "Developer"
-                }
-            ],
+            "authors": [{
+                "name": "Robson V. Leite",
+                "email": "cursos@upinside.com.br",
+                "role": "Developer"
+            }],
             "description": "The data layer is a persistent abstraction component of your database that PDO",
             "homepage": "http://www.upinside.com.br",
             "keywords": [
@@ -86,13 +83,11 @@
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Robson V. Leite",
-                    "email": "cursos@upinside.com.br",
-                    "role": "Developer"
-                }
-            ],
+            "authors": [{
+                "name": "Robson V. Leite",
+                "email": "cursos@upinside.com.br",
+                "role": "Developer"
+            }],
             "description": "A classic CoffeeCode Router is easy, fast and extremely uncomplicated. Create and manage your routes in minutes!",
             "homepage": "http://www.upinside.com.br",
             "keywords": [
@@ -145,8 +140,7 @@
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
+            "authors": [{
                     "name": "Jonathan Reinink",
                     "email": "jonathan@reinink.ca",
                     "role": "Developer"
@@ -220,8 +214,7 @@
             "license": [
                 "LGPL-2.1-only"
             ],
-            "authors": [
-                {
+            "authors": [{
                     "name": "Marcus Bointon",
                     "email": "phpmailer@synchromedia.co.uk"
                 },
@@ -242,12 +235,10 @@
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
                 "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.6.0"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/Synchro",
-                    "type": "github"
-                }
-            ],
+            "funding": [{
+                "url": "https://github.com/Synchro",
+                "type": "github"
+            }],
             "time": "2022-02-28T15:31:21+00:00"
         }
     ],
@@ -257,7 +248,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-gd": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
 }

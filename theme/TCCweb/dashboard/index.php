@@ -37,6 +37,20 @@
                     <div class="invalid-feedback">
                         <?= $dados['erroTCC'] ?>
                     </div>
+                    <select name="id_categoria" id="" class="form-select my-3 <?= $dados['erroIdTCC'] ? 'is-invalid' : '' ?>">
+                        <option value="0" disabled selected>Classifique seu TCC</option>
+                        <?php
+                            foreach($dados['categorias'] as $categoria){
+                        ?>
+                            <option value="<?= $categoria->id_categoria ?>"><?= $categoria->nm_categoria ?></option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        <?= $dados['erroIdTCC'] ?>
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Criar">
                 </div>
             </form>
         </div>

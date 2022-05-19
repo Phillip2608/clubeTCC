@@ -10,6 +10,10 @@
 
 /*GERAL*/
 
+.color-slider {
+    background-color: var(--roxin-escuro);
+}
+
 h1 {
     color: var(--bg-white);
 }

@@ -19,6 +19,7 @@
             <a href="<?=URL?>/users/cadastrar" class="btn btn-warning">Sign-up</a>
           </div>
         <?php } ?>
+        <img src="<?= $_SESSION['im_usuario'] ?>" class="img_user" alt="">
       </div>
     </div>
   </div>

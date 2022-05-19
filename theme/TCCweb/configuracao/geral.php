@@ -6,6 +6,7 @@
             <div class="col p-3 bg-light">
                 <div class="my-3">
                     <h3 class="mx-4">Perfil</h3>
+                    <?= message("dadosOK") ?>
                     <div class="row d-flex align-items-center flex-wrap">
                         <div class="col-3 mx-1 d-flex align-items-center mx-auto justify-content-lg-center">
                             <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" alt="" width="100" height="100" class="bg-secondary rounded-circle p-0">

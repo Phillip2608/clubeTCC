@@ -5,7 +5,7 @@
             <?php include 'menu_config.php'; ?>
             <div class="col p-3 bg-light">
                 <div class="container my-3">
-                    <h3 class="mx-4">Dados</h3>
+                    <h3 class="mx-4"><?= $dados['titulo'] ?></h3>
                     <form action="<?= $router->route("configure.perfil"); ?>" class="container my-4 row" method="POST" enctype="multipart/form-data">
                         <div class="my-1 d-flex align-items-center" id="myBtn">
                             <img src="<?php if ($_SESSION['im_usuario'] == null) {

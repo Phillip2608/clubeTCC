@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '0d9d6e41a20ac376ce14c4417983c9a2fdb8ba7e',
         'name' => 'luizl/clude-tcc',
         'dev' => true,
     ),
@@ -28,6 +28,15 @@
             'reference' => '29f73e12351a116e9bbb3f695595777a09e18077',
             'dev_requirement' => false,
         ),
+        'gumlet/php-image-resize' => array(
+            'pretty_version' => '2.0.2',
+            'version' => '2.0.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../gumlet/php-image-resize',
+            'aliases' => array(),
+            'reference' => '39066a32de8476a32c9ac6322f9658021cee8638',
+            'dev_requirement' => false,
+        ),
         'league/plates' => array(
             'pretty_version' => 'v3.4.0',
             'version' => '3.4.0.0',
@@ -38,12 +47,12 @@
             'dev_requirement' => false,
         ),
         'luizl/clude-tcc' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '0d9d6e41a20ac376ce14c4417983c9a2fdb8ba7e',
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(

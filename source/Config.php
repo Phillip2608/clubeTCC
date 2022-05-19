@@ -69,6 +69,7 @@ function uploadArquivo($error,$size ,$name, $tmp_name, $id_arquivo = null)
     if ($size > 5242880) {
         die("Arquivo muito grande! Máximo de arquivo 5MB");
     }
+    
     $nm_arquivo = $name;
     $new_arquivo = $id_arquivo;
     $extensao = strtolower(pathinfo($nm_arquivo, PATHINFO_EXTENSION));

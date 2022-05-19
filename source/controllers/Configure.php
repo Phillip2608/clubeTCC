@@ -72,8 +72,9 @@ class Configure
                             $_SESSION['nm_email'] = $dados['email'];
                             $_SESSION['im_usuario'] = $dados['perfil']->im_usuario;
                         }
-
-                        //redirect("/configuracao/geral/" . $_SESSION['id_usuario'], $dados);
+                        
+                        message("dadosOK", "Dados atualizados com sucesso!");
+                        redirect("/configuracao/geral/" . $_SESSION['id_usuario'], $dados);
                     }
                 }
 
@@ -107,7 +108,8 @@ class Configure
                         $_SESSION['nm_email'] = $dados['email'];
                         $_SESSION['im_usuario'] = $dados['perfil']->im_usuario;
                     }
-                    //redirect("/configuracao/geral/" . $_SESSION['id_usuario'], $dados);
+                    message("dadosOK", "Dados atualizados com sucesso!");
+                    redirect("/configuracao/geral/" . $_SESSION['id_usuario'], $dados);
 
                 }
             }

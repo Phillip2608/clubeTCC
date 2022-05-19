@@ -15,6 +15,10 @@ textarea {
     outline: none;
 }
 
+.img_user {
+    width: 5rem;
+}
+
 
 /*FIM-HOME*/
 
@@ -23,7 +27,6 @@ textarea {
 
 .nav-link {
     transition: .5s;
-    transition-property: background;
 }
 
 a {
@@ -36,7 +39,6 @@ li {
 
 .botao_cor {
     transition: .5s;
-    transition-property: background;
 }
 
 .input-outline {
@@ -61,7 +63,6 @@ li {
 
 .list-group-item {
     transition: .5s;
-    transition-property: background;
 }
 
 

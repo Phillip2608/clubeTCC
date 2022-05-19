@@ -47,6 +47,18 @@
                                 </h6>
                             </div>
                         </div>
+                        <div class="row my-2">
+                            <div class="col">
+                                <h4>Categoria</h4>
+                                <h6 class="card-text">
+                                    <?php foreach($dados['categorias'] as $categoria){
+                                        if($categoria->id_categoria == $dados['tcc']->id_categoria){
+                                            echo $categoria->nm_categoria;
+                                        } 
+                                    }  ?>
+                                </h6>
+                            </div>
+                        </div>
                         <div class="row row-cols-1 my-2">
                             <div class="col">
                                 <h4>Documentos</h4>

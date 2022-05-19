@@ -24,7 +24,23 @@
                         </label>
                         <textarea class="form-control" placeholder="Digite alguma descrição" id="exampleFormControlTextarea1" rows="4" name="ds_tcc"><?= $dados['tcc']->ds_tcc ?></textarea>
                     </div>
-                    <div class="mb-3">
+                    <label for="categorias">
+                        <h5>Categorias</h5>
+                    </label>
+                    <select name="id_categoria" id="categorias" class="form-select  <?= $dados['erroIdTCC'] ? 'is-invalid' : '' ?>">
+                        <?php
+                        foreach ($dados['allCater'] as $categoria) {
+                            if ($categoria->id_categoria == $dados['tcc']->id_categoria) {
+                                echo "<option value='" . $dados['tcc']->id_categoria . "' selected>" . $categoria->nm_categoria . "</option>";
+                            } else {
+                        ?>
+                                <option value="<?= $categoria->id_categoria ?>"><?= $categoria->nm_categoria ?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    <div class="mb-3 my-4">
                         <input type="submit" class="form-control btn btn-success" value="Confirmar">
                     </div>
                 </form>
@@ -90,8 +106,8 @@
                 <div class="card-body topo">
                     <form action="<?= $router->route('dashboard.dadosgerais'); ?>" name="form_inter" id="form-integrante" method="POST">
                         <?php
-                            $dados['nm_tcc'] = $dados['tcc']->nm_tcc;
-                            $dados['ds_tcc'] = $dados['tcc']->ds_tcc;
+                        $dados['nm_tcc'] = $dados['tcc']->nm_tcc;
+                        $dados['ds_tcc'] = $dados['tcc']->ds_tcc;
                         ?>
                         <div class="mb-3 busca_inter">
                             <label for="exampleFormControlInput1" class="form-label ">
@@ -105,7 +121,7 @@
                                 <div class="col">
                                     <select name="result-inter" id="result-inter" class="result-inter form-select">
                                         <option value="0" selected disabled> Cargo </option>
-                                        <?php foreach($dados['cargo'] as $result){ ?>
+                                        <?php foreach ($dados['cargo'] as $result) { ?>
                                             <option value="<?= $result->id_cargo ?>"><?= $result->nm_cargo ?></option>
                                         <?php } ?>
                                     </select>
@@ -113,7 +129,7 @@
                                 <div class="col">
                                     <select name="result-inter" id="result-inter" class="result-inter form-select">
                                         <option value="0" selected disabled>Função</option>
-                                        <?php foreach($dados['funcao'] as $result){ ?>
+                                        <?php foreach ($dados['funcao'] as $result) { ?>
                                             <option value="<?= $result->id_funcao ?>"><?= $result->nm_funcao ?></option>
                                         <?php } ?>
                                     </select>

@@ -4,12 +4,14 @@ namespace Source\controllers;
 
 use League\Plates\Engine;
 use Source\models\Cargo;
+use Source\models\Categoria;
 use Source\models\Docs;
 use Source\models\Funcao;
 use Source\models\Integrante;
 use Source\models\Pesquisas;
 use Source\models\TCC;
 use Source\models\tipoDocs;
+use Gumlet\ImageResize;
 
 class Dashboard
 {
@@ -23,25 +25,36 @@ class Dashboard
 
     public function index()
     {
+        $tcc_categorias = $this->allCategorias();
         $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $select_cater = $_POST['id_categoria'];
         if (isset($formulario)) {
             $dados = [
                 'nomeTCC' => trim($formulario['nm_tcc']),
+                'categoria' => $select_cater,
                 'meusTCC' => $this->meusTCC($_SESSION['id_usuario'])
             ];
             if (in_array("", $formulario)) {
                 if (empty($formulario['nm_tcc'])) {
                     $dados['erroTCC'] = "Digite o nome do projeto!";
+                    $dados['categorias'] = $tcc_categorias;
+                    echo $this->view->render("/index", ["dados" => $dados]);
                 }
+            }else if(empty($select_cater)){
+                $dados['erroIdTCC'] = "Escolha uma categoria!";
+                $dados['categorias'] = $tcc_categorias;
+                echo $this->view->render("/index", ["dados" => $dados]);
             } else {
-                $this->criarTCC($dados['nomeTCC']);
+                $this->criarTCC($dados['nomeTCC'], $dados['categoria']);
                 redirect("/dashboard/index/" . $_SESSION['id_usuario']);
             }
         } else {
             $dados = [
                 'nomeTCC' => '',
                 'erroTCC' => '',
-                'meusTCC' => $this->meusTCC($_SESSION['id_usuario'])
+                'erroIdTCC' => '',
+                'meusTCC' => $this->meusTCC($_SESSION['id_usuario']),
+                'categorias' => $tcc_categorias
             ];
             echo $this->view->render("/index", ["dados" => $dados]);
         }
@@ -59,6 +72,7 @@ class Dashboard
         $pesquisas = $this->viewPesquisas3($id_tcc);
         $umInter = $this->UMintegrante($id_user, $id_tcc);
         $img_banner = $_FILES['img_banner'];
+        $tcc_categorias = $this->allCategorias();
         
         if($img_banner != null){
             $dados = [
@@ -67,12 +81,10 @@ class Dashboard
                 'img_banner' => $img_banner
             ];
 
-            var_dump($dados['img_banner']);
-
             $new_name = uniqid();
             $extensao = strtolower(pathinfo($img_banner['name'], PATHINFO_EXTENSION));
             uploadArquivo($img_banner['erro'], $img_banner['size'], $img_banner['name'], $img_banner['tmp_name'], $new_name);
-
+            
             $tcc->im_banner = $new_name.'.'.$extensao;
             $tcc->save();
             message("bannerOK", "TCC atualizado com sucesso!");
@@ -84,7 +96,8 @@ class Dashboard
                     'tcc' => $tcc,
                     'docs' => $docs,
                     'inter' => $inter,
-                    'pesquisas' => $pesquisas
+                    'pesquisas' => $pesquisas,
+                    'categorias' => $tcc_categorias
                 ];
                 if (isset($dados['tcc']->id_tcc)) {
                     if ($dados['tcc']->id_usuario == $id_user) {
@@ -100,7 +113,8 @@ class Dashboard
                     'tcc' => $tcc,
                     'docs' => $docs,
                     'inter' => $inter,
-                    'pesquisas' => $pesquisas
+                    'pesquisas' => $pesquisas,
+                    'categorias' => $tcc_categorias
                 ];
     
     
@@ -124,22 +138,28 @@ class Dashboard
         $funcao = $this->viewFuncao();
         $nm_tcc = $_POST['nm_tcc'];
         $ds_tcc = $_POST['ds_tcc'];
-        if (isset($nm_tcc) || isset($ds_tcc)) {
+        $select_cater = $_POST['id_categoria'];
+        $tcc_categorias = $this->allCategorias();
+        if (isset($nm_tcc) || isset($ds_tcc) || isset($select_cater)) {
             $dados = [
                 'titulo' => 'Dados Gerais',
                 'inter' => $inter,
                 'tcc' => $tcc,
                 'nm_tcc' => $nm_tcc,
-                'ds_tcc' => $ds_tcc
+                'ds_tcc' => $ds_tcc,
+                'cater'=> $select_cater,
+                'allCater'=> $tcc_categorias
             ];
 
             if (($nm_tcc == null) || ($ds_tcc == null)) {
                 if (empty($nm_tcc)) {
                     $dados['nm_erro'] = "Seu TCC deve possuir um nome!";
+                    $dados['allCater'] = $tcc_categorias;
                     echo $this->view->render("/dadosgerais", ["dados" => $dados]);
                 } elseif (empty($ds_tcc)) {
                     $dados['tcc']->nm_tcc = $dados['nm_tcc'];
                     $dados['tcc']->ds_tcc = $dados['ds_tcc'];
+                    $dados['tcc']->id_categoria = $dados['cater'];
                     $dados['tcc']->save();
                     message('Confirma', 'Atualização feita com sucesso');
                     redirect("/dashboard/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
@@ -149,7 +169,9 @@ class Dashboard
             } else {
                 $dados['tcc']->nm_tcc = $dados['nm_tcc'];
                 $dados['tcc']->ds_tcc = $dados['ds_tcc'];
+                $dados['tcc']->id_categoria = $dados['cater'];
                 $dados['tcc']->save();
+
                 message('Confirma', 'Atualização feita com sucesso');
                 redirect("/dashboard/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
             }
@@ -162,7 +184,9 @@ class Dashboard
                 'ds_tcc' => '',
                 'nm_erro' => '',
                 'cargo' => $cargo,
-                'funcao' => $funcao
+                'funcao' => $funcao,
+                'cater'=> '',
+                'allCater'=> $tcc_categorias
             ];
             echo $this->view->render("/dadosgerais", ["dados" => $dados]);
         }
@@ -381,10 +405,11 @@ class Dashboard
         return $result;
     }
 
-    private function criarTCC($nomeTCC)
+    private function criarTCC($nomeTCC, $idCategoria)
     {
         $tcc = new TCC();
         $tcc->nm_tcc = $nomeTCC;
+        $tcc->id_categoria = $idCategoria;
         $tcc->id_usuario = $_SESSION['id_usuario'];
         $tcc->save();
     }
@@ -540,6 +565,16 @@ class Dashboard
     {
         $funcao = (new Funcao())->find();
         $result = $funcao->fetch(true);
+        return $result;
+    }
+
+    /**
+     * CATEGORIAS
+     * allCategorias
+     */
+    private function allCategorias(){
+        $categorias = (new Categoria())->find();
+        $result = $categorias->fetch(true);
         return $result;
     }
 }

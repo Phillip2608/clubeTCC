@@ -1,6 +1,5 @@
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +19,7 @@
 	<!-- CSS BRUTO DO SITE -->
 	<link rel="stylesheet" href="<?= CSS ?>/cores.css">
 	<link rel='stylesheet' href="<?= CSS ?>/estilo.css">
+	<link rel="stylesheet" href="<?= CSS ?>/carousel.css">
     <?php
 	if (($_SESSION['id_tema'] == null) || ($_SESSION['id_tema'] == 1)) {
 		echo "<link rel='stylesheet' href='" . CSS . "/temas/branco.css'>";
@@ -35,6 +35,7 @@
 		echo "<link rel='stylesheet' href='" . CSS . "/temas/roxo.css'>";
 	}
 	?>
+	
 </head>
 
 <body class="fundo">
@@ -45,7 +46,6 @@
     </main>
 
     <?php include "rodape.php" ?>
-    
     <script src="<?= url("/theme/assets/js/jquery.js"); ?>"></script>
     <?= $this->section("js"); ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
