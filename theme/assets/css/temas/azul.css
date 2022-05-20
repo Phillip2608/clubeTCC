@@ -18,6 +18,10 @@ h1 {
     color: var(--bg-white);
 }
 
+h5 {
+    color: var(--bg-white);
+}
+
 .menu_titulo {
     color: var(--bg-white);
 }

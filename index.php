@@ -29,6 +29,8 @@ $router->get("/planos", "Paginas:planos", "paginas.planos");
  * humanas
  * 
  */
+$router->group("categoriasTCC");
+$router->get("/index", "Categorias:index", "categoriasTCC.index");
 
 /** 
  * USERS
