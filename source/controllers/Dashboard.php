@@ -11,7 +11,6 @@ use Source\models\Integrante;
 use Source\models\Pesquisas;
 use Source\models\TCC;
 use Source\models\tipoDocs;
-use Gumlet\ImageResize;
 
 class Dashboard
 {
@@ -40,7 +39,7 @@ class Dashboard
                     $dados['categorias'] = $tcc_categorias;
                     echo $this->view->render("/index", ["dados" => $dados]);
                 }
-            }else if(empty($select_cater)){
+            } else if (empty($select_cater)) {
                 $dados['erroIdTCC'] = "Escolha uma categoria!";
                 $dados['categorias'] = $tcc_categorias;
                 echo $this->view->render("/index", ["dados" => $dados]);
@@ -71,62 +70,46 @@ class Dashboard
         $inter = $this->integrantes3($id_tcc);
         $pesquisas = $this->viewPesquisas3($id_tcc);
         $umInter = $this->UMintegrante($id_user, $id_tcc);
-        $img_banner = $_FILES['img_banner'];
+
         $tcc_categorias = $this->allCategorias();
-        
-        if($img_banner != null){
+
+
+        if ($umInter->id_tcc == $id_tcc) {
             $dados = [
                 'titulo' => 'Visão Geral',
                 'tcc' => $tcc,
-                'img_banner' => $img_banner
+                'docs' => $docs,
+                'inter' => $inter,
+                'pesquisas' => $pesquisas,
+                'categorias' => $tcc_categorias
             ];
-
-            $new_name = uniqid();
-            $extensao = strtolower(pathinfo($img_banner['name'], PATHINFO_EXTENSION));
-            uploadArquivo($img_banner['erro'], $img_banner['size'], $img_banner['name'], $img_banner['tmp_name'], $new_name);
-            
-            $tcc->im_banner = $new_name.'.'.$extensao;
-            $tcc->save();
-            message("bannerOK", "TCC atualizado com sucesso!");
-            redirect("/dashboard/geral/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
-        }else{
-            if ($umInter->id_tcc == $id_tcc) {
-                $dados = [
-                    'titulo' => 'Visão Geral',
-                    'tcc' => $tcc,
-                    'docs' => $docs,
-                    'inter' => $inter,
-                    'pesquisas' => $pesquisas,
-                    'categorias' => $tcc_categorias
-                ];
-                if (isset($dados['tcc']->id_tcc)) {
-                    if ($dados['tcc']->id_usuario == $id_user) {
-                        echo $this->view->render("/geral", ["dados" => $dados]);
-                    } else {
-                        redirect("/dashboard/index/" . $id_user, $dados);
-                    }
-                }
-            } else {
-                $this->addUserInter($id_user, $id_tcc, 1);
-                $dados = [
-                    'titulo' => 'Visão Geral',
-                    'tcc' => $tcc,
-                    'docs' => $docs,
-                    'inter' => $inter,
-                    'pesquisas' => $pesquisas,
-                    'categorias' => $tcc_categorias
-                ];
-    
-    
-                if (isset($dados['tcc']->id_tcc)) {
-                    if ($dados['tcc']->id_usuario == $id_user) {
-                        echo $this->view->render("/geral", ["dados" => $dados]);
-                    } else {
-                        redirect("/dashboard/index/" . $id_user, $dados);
-                    }
+            if (isset($dados['tcc']->id_tcc)) {
+                if ($dados['tcc']->id_usuario == $id_user) {
+                    echo $this->view->render("/geral", ["dados" => $dados]);
+                } else {
+                    redirect("/dashboard/index/" . $id_user, $dados);
                 }
             }
-        }    
+        } else {
+            $this->addUserInter($id_user, $id_tcc, 1);
+            $dados = [
+                'titulo' => 'Visão Geral',
+                'tcc' => $tcc,
+                'docs' => $docs,
+                'inter' => $inter,
+                'pesquisas' => $pesquisas,
+                'categorias' => $tcc_categorias
+            ];
+
+
+            if (isset($dados['tcc']->id_tcc)) {
+                if ($dados['tcc']->id_usuario == $id_user) {
+                    echo $this->view->render("/geral", ["dados" => $dados]);
+                } else {
+                    redirect("/dashboard/index/" . $id_user, $dados);
+                }
+            }
+        }
     }
 
     public function dadosgerais()
@@ -147,8 +130,8 @@ class Dashboard
                 'tcc' => $tcc,
                 'nm_tcc' => $nm_tcc,
                 'ds_tcc' => $ds_tcc,
-                'cater'=> $select_cater,
-                'allCater'=> $tcc_categorias
+                'cater' => $select_cater,
+                'allCater' => $tcc_categorias
             ];
 
             if (($nm_tcc == null) || ($ds_tcc == null)) {
@@ -185,10 +168,51 @@ class Dashboard
                 'nm_erro' => '',
                 'cargo' => $cargo,
                 'funcao' => $funcao,
-                'cater'=> '',
-                'allCater'=> $tcc_categorias
+                'cater' => '',
+                'allCater' => $tcc_categorias
             ];
             echo $this->view->render("/dadosgerais", ["dados" => $dados]);
+        }
+    }
+
+    public function bannerATT()
+    {
+        $tcc = $this->meuTCC($_SESSION['id_tcc']);
+        $img_banner = $_FILES['img_banner'];
+        if ($_FILES['img_banner'] == null) {
+            $dados = [
+                'titulo' => 'Visão Geral',
+                'tcc' => $tcc,
+                'img_banner' => $img_banner
+            ];
+
+            $tcc->im_banner = "";
+            $tcc->save();
+            var_dump($_FILES['img_banner']);
+            message('Confirma', 'Atualização feita com ');
+            redirect("/dashboard/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+        }
+        if ($img_banner != null) {
+            $dados = [
+                'titulo' => 'Visão Geral',
+                'tcc' => $tcc,
+                'img_banner' => $img_banner
+            ];
+
+            $extensao = strtolower(pathinfo($img_banner['name'], PATHINFO_EXTENSION));
+            if ($extensao == null) {
+                $tcc->im_banner = null;
+                $tcc->save();
+                message('Confirma', 'Atualização feita com sucesso!');
+                redirect("/dashboard/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+            } else {
+                $new_name = uniqid();
+                uploadArquivo($img_banner['erro'], $img_banner['size'], $img_banner['name'], $img_banner['tmp_name'], $new_name);
+                $tcc->im_banner = $new_name . '.' . $extensao;
+                $tcc->save();
+                message('Confirma', 'Atualização feita com sucesso!');
+                redirect("/dashboard/dadosgerais/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+            }
         }
     }
 
@@ -351,30 +375,31 @@ class Dashboard
                 $new_name = uniqid();
                 $deu_certo = uploadArquivo($files['erro'][$index], $files['size'][$index], $files['name'][$index], $files['tmp_name'][$index], $new_name);
                 $extensao = strtolower(pathinfo($files['name'][$index], PATHINFO_EXTENSION));
-                $new_path = $new_name.'.'.$extensao;
+                $new_path = $new_name . '.' . $extensao;
 
                 $tipoDocs = $this->tipoDocs($extensao);
 
-                $this->newDocument($_SESSION['id_tcc'],$tipoDocs->id_tipoDocs, $files['name'][$index], $new_path);
-                
+                $this->newDocument($_SESSION['id_tcc'], $tipoDocs->id_tipoDocs, $files['name'][$index], $new_path);
+
                 if (!$deu_certo) $tudo_certo = false;
             }
-            if ($tudo_certo){
+            if ($tudo_certo) {
                 message('DocsOK', 'Documentos enviados com sucesso!');
                 redirect("/dashboard/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
             } else message('DocsOK', 'Falha ao enviar todos os arquivos!', 'alert alert-danger');
-        }else{
+        } else {
             $dados = [
                 'titulo' => 'Documentos',
                 'docs' => $allDocs
             ];
         }
-        
+
 
         echo $this->view->render("/documentos", ['dados' => $dados]);
     }
 
-    public function deletDocs(){
+    public function deletDocs()
+    {
         $id_docs = $_POST['idDocs'];
         $pesquisa = $this->viewDocument($id_docs);
         $params = http_build_query([":docs" => $id_docs]);
@@ -506,7 +531,8 @@ class Dashboard
      * tipoDocs
      */
 
-    private function newDocument($id_tcc,$id_tipoDocs, $nm_docs, $nm_newName){
+    private function newDocument($id_tcc, $id_tipoDocs, $nm_docs, $nm_newName)
+    {
         $docs = new Docs();
         $docs->id_tcc = $id_tcc;
         $docs->id_tipoDocs = $id_tipoDocs;
@@ -515,7 +541,8 @@ class Dashboard
         $docs->save();
     }
 
-    private function viewDocument($id_docs){
+    private function viewDocument($id_docs)
+    {
         $params = http_build_query(["docs" => $id_docs]);
         $docs = (new Docs())->find("id_documento = :docs", $params);
         $result = $docs->fetch();
@@ -538,7 +565,8 @@ class Dashboard
         return $result;
     }
 
-    private function tipoDocs($extensao){
+    private function tipoDocs($extensao)
+    {
         $params = http_build_query(["docs" => $extensao]);
         $docs = (new tipoDocs())->find("nm_tipoDocs = :docs", $params);
         $result = $docs->fetch();
@@ -572,7 +600,8 @@ class Dashboard
      * CATEGORIAS
      * allCategorias
      */
-    private function allCategorias(){
+    private function allCategorias()
+    {
         $categorias = (new Categoria())->find();
         $result = $categorias->fetch(true);
         return $result;

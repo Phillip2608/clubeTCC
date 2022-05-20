@@ -1,3 +1,8 @@
+<style>
+    .img_user_upp{
+        object-fit: cover;
+    }
+</style>
 <?php $this->layout("../_theme"); ?>
 <main class="container my-5 fundo">
     <div class="col-10 mx-auto shadow">
@@ -14,7 +19,7 @@
                                             echo ICON . "/person.png";
                                         } else {
                                             echo $_SESSION['im_usuario'];
-                                        } ?>" alt="" width="100" height="100" class="bg-secondary rounded-circle p-0 btn" id="img_att">
+                                        } ?>" alt="" width="100" height="100" class="img_user_upp bg-secondary rounded-circle p-0 btn" id="img_att">
                             <input type="file" name="im_usuario" class="d-none" id="select_file" accept="image/*">
                         </div>
                         <label for="exampleFormControlInput1" class="form-label my-2">Clique na imagem para alterar</label>

@@ -1,3 +1,8 @@
+<style>
+    .img_user_upp{
+        object-fit: cover;
+    }
+</style>
 <?php $this->layout("../_theme"); ?>
 <main class="container my-5 fundo">
     <div class="col-10 mx-auto shadow">
@@ -9,7 +14,7 @@
                     <?= message("dadosOK") ?>
                     <div class="row d-flex align-items-center flex-wrap">
                         <div class="col-3 mx-1 d-flex align-items-center mx-auto justify-content-lg-center">
-                            <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" alt="" width="100" height="100" class="bg-secondary rounded-circle p-0">
+                            <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" alt="" width="100" height="100" class="img_user_upp bg-secondary rounded-circle p-0">
                         </div>
                         <table class="col table">
                             <tbody>

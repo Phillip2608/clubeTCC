@@ -1,3 +1,8 @@
+<style>
+    .img_banner {
+        object-fit: cover;
+    }
+</style>
 <?php $this->layout("../_theme"); ?>
 <main>
     <section class="container my-5">
@@ -8,17 +13,11 @@
             <div class="row p-4 row-cols-1 row-cols-sm-2 g-3">
                 <div class="col">
                     <div class="card bg-light border border-0">
-                        <h3>Clique na imagem para adicionar um banner</h3>
-                        <?= message("bannerOK") ?>
-                        <form action="<?= $router->route("dashboard.geralATT") ?>" enctype="multipart/form-data" method="POST">
-                            <input type="file" id="select_file" accept="image/*" class="d-none" name="img_banner"> 
-                            <img src="<?php if($dados['tcc']->im_banner == null){echo IMG . '/Logos/Maximizada colorida.png'; }else{ echo IMG.'/uploads/imgUpload/'.$dados['tcc']->im_banner; } ?>" alt="" width="100%" height="630" class="bg-secondary border border-0 rounded-3 p-0 btn shadow-sm my-2" id="img_banner">
-                            <div class="row">
-                                <div class="card bg-light border border-0">
-                                    <input type="submit" class="col btn btn-outline-success my-2">
-                                </div>
-                            </div>
-                        </form>
+                        <img src="<?php if ($dados['tcc']->im_banner == null) {
+                                        echo IMG . '/Logos/Maximizada colorida.png';
+                                    } else {
+                                        echo IMG . '/uploads/imgUpload/' . $dados['tcc']->im_banner;
+                                    } ?>" alt="" width="100%" height="630" class="img_banner bg-secondary border border-0 rounded-3 p-0 shadow-sm my-2">
                     </div>
                 </div>
                 <div class="col">
@@ -51,10 +50,10 @@
                             <div class="col">
                                 <h4>Categoria</h4>
                                 <h6 class="card-text">
-                                    <?php foreach($dados['categorias'] as $categoria){
-                                        if($categoria->id_categoria == $dados['tcc']->id_categoria){
+                                    <?php foreach ($dados['categorias'] as $categoria) {
+                                        if ($categoria->id_categoria == $dados['tcc']->id_categoria) {
                                             echo $categoria->nm_categoria;
-                                        } 
+                                        }
                                     }  ?>
                                 </h6>
                             </div>
@@ -238,27 +237,3 @@
 
     </section>
 </main>
-<?php $this->start("js"); ?>
-<script>
-    var viewImage = document.getElementById('img_banner')
-    var select_file = document.getElementById('select_file');
-
-    viewImage.addEventListener('click', () => {
-        select_file.click();
-    });
-
-    select_file.addEventListener('change', (event) => {
-        if (select_file.files.length <= 0) {
-            return;
-        }
-
-        var reader = new FileReader();
-
-        reader.onload = () => {
-            viewImage.src = reader.result;
-        }
-
-        reader.readAsDataURL(select_file.files[0]);
-    });
-</script>
-<?php $this->end(); ?>

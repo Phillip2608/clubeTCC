@@ -7,7 +7,7 @@
   </div>
   <div class="row my-5">
     <div class="col d-flex justify-content-center">
-      <h1>Venha se divertir com nosso puro conhecimento !</h2>
+      <h1 class="text-center">Venha se divertir com o futuro do TCC !</h2>
     </div>
   </div>
 </section>
@@ -26,7 +26,11 @@
       <?php
       foreach ($dados['humanas'] as $humanas) {
       ?>
-        <img src="<?= IMG ?>/uploads/imgUpload/<?= $humanas->im_banner ?>" alt="">
+        <img src="<?php if ($humanas->im_banner == null) {
+                    echo IMG . '/Logos/Maximizada colorida.png';
+                  } else {
+                    echo IMG . '/uploads/imgUpload/' . $humanas->im_banner;
+                  } ?>" alt="">
       <?php
       }
       ?>
@@ -54,7 +58,11 @@
       <?php
       foreach ($dados['exatas'] as $exatas) {
       ?>
-        <img src="<?= IMG ?>/uploads/imgUpload/<?= $exatas->im_banner ?>" alt="">
+        <img src="<?php if ($exatas->im_banner == null) {
+                    echo IMG . '/Logos/Maximizada colorida.png';
+                  } else {
+                    echo IMG . '/uploads/imgUpload/' . $exatas->im_banner;
+                  } ?>" alt="">
       <?php
       }
       ?>
@@ -82,7 +90,7 @@
       <?php
       foreach ($dados['biologicas'] as $biologicas) {
       ?>
-        <img src="<?= IMG ?>/uploads/imgUpload/<?= $biologicas->im_banner ?>" alt="">
+        <img src="<?php if($biologicas->im_banner == null){ echo IMG . '/Logos/Maximizada colorida.png';}else{echo IMG . '/uploads/imgUpload/' . $biologicas->im_banner;} ?>" alt="">
       <?php
       }
       ?>

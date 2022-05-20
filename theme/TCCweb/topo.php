@@ -1,3 +1,10 @@
+<style>
+  .img_user {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+</style>
 <header>
   <div class="px-3 py-2 topo">
     <div class="container">
@@ -13,13 +20,17 @@
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Procurar..." aria-label="Procurar">
         </form>
-        <?php if ($_SESSION['id_usuario']==null) { ?>
+        <?php if ($_SESSION['id_usuario'] == null) { ?>
           <div class="text-end">
-            <a href="<?=URL?>/users/login" class="btn btn-outline-light me-2">login</a>
-            <a href="<?=URL?>/users/cadastrar" class="btn btn-warning">Sign-up</a>
+            <a href="<?= URL ?>/users/login" class="btn btn-outline-light me-2">login</a>
+            <a href="<?= URL ?>/users/cadastrar" class="btn btn-warning">Sign-up</a>
           </div>
         <?php } ?>
-        <img src="<?= $_SESSION['im_usuario'] ?>" class="img_user" alt="">
+        <picture>
+          <source srcset="<?= $_SESSION['im_usuario'] ?>" type="image/svg+xml">
+          <img src="<?= $_SESSION['im_usuario'] ?>" width="60" height="60" class="img_user rounded-circle" alt="">
+        </picture>
+        
       </div>
     </div>
   </div>
