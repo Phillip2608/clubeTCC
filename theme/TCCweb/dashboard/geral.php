@@ -1,6 +1,7 @@
 <style>
     .img_banner {
-        object-fit: cover;
+        object-fit: contain;
+        background-color: #cfd1d1;
     }
 </style>
 <?php $this->layout("../_theme"); ?>
@@ -17,7 +18,7 @@
                                         echo IMG . '/Logos/Maximizada colorida.png';
                                     } else {
                                         echo IMG . '/uploads/imgUpload/' . $dados['tcc']->im_banner;
-                                    } ?>" alt="" width="100%" height="630" class="img_banner bg-secondary border border-0 rounded-3 p-0 shadow-sm my-2">
+                                    } ?>" alt="" width="100%" height="630" class="img_banner border border-0 rounded-3 p-0 shadow-sm my-2">
                     </div>
                 </div>
                 <div class="col">
@@ -41,6 +42,20 @@
                                         echo "Nenhuma descrição foi feita";
                                     } else {
                                         echo $dados['tcc']->ds_tcc;
+                                    }
+                                    ?>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col">
+                                <h4>Disponibilidade</h4>
+                                <h6 class="card-text">
+                                <?php
+                                    if ($dados['tcc']->id_privado == 0) {
+                                        echo "Público";
+                                    } else {
+                                        echo "Privado";
                                     }
                                     ?>
                                 </h6>

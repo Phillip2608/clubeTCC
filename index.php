@@ -31,6 +31,9 @@ $router->get("/planos", "Paginas:planos", "paginas.planos");
  */
 $router->group("categoriasTCC");
 $router->get("/index", "Categorias:index", "categoriasTCC.index");
+$router->get("/Humanas/{idcategoria}", "Categorias:humanas", "categoriasTCC.humanas");
+$router->get("/Exatas/{idcategoria}", "Categorias:exatas", "categoriasTCC.exatas");
+$router->get("/Biologicas/{idcategoria}", "Categorias:biologicas", "categoriasTCC.biologicas");
 
 /** 
  * USERS
@@ -67,6 +70,7 @@ $router->post("/temas/{$_SESSION['id_usuario']}", "Configure:temas", "configure.
  * editpesquisa
  * deletSearch
  * documentos
+ * publicarTCC
  */
 $router->group("dashboard");
 $router->get("/index/{$_SESSION['id_usuario']}", "Dashboard:index", "dashboard.index");

@@ -1,3 +1,12 @@
+<style>
+  .name-cater {
+    text-decoration: none;
+  }
+
+  .title-slider {
+    cursor: pointer;
+  }
+</style>
 <?php $this->layout("../_theme"); ?>
 <section class="container">
   <div class="row my-5">
@@ -13,7 +22,8 @@
 </section>
 <section class="row-slider my-4">
   <div class="top-slider">
-    <h1 class="title-slider">Humanas</h1>
+    <a href="<?= URL ?>/categoriasTCC/Humanas/1" id="Hlink" class="d-none"></a>
+    <h1 class="title-slider" id="H"> Humanas </h1>
     <div class="progress-bar-slider"></div>
   </div>
   <div class="cont color-slider">
@@ -25,13 +35,17 @@
     <div class="slider">
       <?php
       foreach ($dados['humanas'] as $humanas) {
+        if ($humanas->id_privado == 0) {
       ?>
-        <img src="<?php if ($humanas->im_banner == null) {
-                    echo IMG . '/Logos/Maximizada colorida.png';
-                  } else {
-                    echo IMG . '/uploads/imgUpload/' . $humanas->im_banner;
-                  } ?>" alt="">
+
+          <img src="<?php if ($humanas->im_banner == null) {
+                      echo IMG . '/Logos/Maximizada colorida.png';
+                    } else {
+                      echo IMG . '/uploads/imgUpload/' . $humanas->im_banner;
+                    } ?>" class="rounded-3" alt="">
+
       <?php
+        }
       }
       ?>
 
@@ -45,7 +59,8 @@
 </section>
 <section class="row-slider my-4">
   <div class="top-slider">
-    <h1 class="title-slider cor_letras_body">Exatas</h1>
+    <a href="<?= URL ?>/categoriasTCC/Exatas/2" id="Elink" class="d-none"></a>
+    <h1 class="title-slider cor_letras_body" id="E">Exatas</h1>
     <div class="progress-bar-slider"></div>
   </div>
   <div class="cont color-slider">
@@ -57,13 +72,15 @@
     <div class="slider">
       <?php
       foreach ($dados['exatas'] as $exatas) {
+        if ($exatas->id_privado == 0) {
       ?>
-        <img src="<?php if ($exatas->im_banner == null) {
-                    echo IMG . '/Logos/Maximizada colorida.png';
-                  } else {
-                    echo IMG . '/uploads/imgUpload/' . $exatas->im_banner;
-                  } ?>" alt="">
+          <img src="<?php if ($exatas->im_banner == null) {
+                                echo IMG . '/Logos/Maximizada colorida.png';
+                            } else {
+                                echo IMG . '/uploads/imgUpload/' . $exatas->im_banner;
+                            } ?>" class="shadow rounded-3" alt="" >
       <?php
+        }
       }
       ?>
 
@@ -77,7 +94,8 @@
 </section>
 <section class="row-slider my-4">
   <div class="top-slider">
-    <h1 class="title-slider cor_letras_body">Biológicas</h3>
+    <a href="<?= URL ?>/categoriasTCC/Biologicas/3" id="Blink" class="d-none"></a>
+    <h1 class="title-slider cor_letras_body" id="B">Biológicas</h3>
       <div class="progress-bar-slider"></div>
   </div>
   <div class="cont color-slider">
@@ -89,9 +107,15 @@
     <div class="slider">
       <?php
       foreach ($dados['biologicas'] as $biologicas) {
+        if ($biologicas->id_privado == 0) {
       ?>
-        <img src="<?php if($biologicas->im_banner == null){ echo IMG . '/Logos/Maximizada colorida.png';}else{echo IMG . '/uploads/imgUpload/' . $biologicas->im_banner;} ?>" alt="">
+          <img src="<?php if ($biologicas->im_banner == null) {
+                                echo IMG . '/Logos/Maximizada colorida.png';
+                            } else {
+                                echo IMG . '/uploads/imgUpload/' . $biologicas->im_banner;
+                            } ?>" class="shadow rounded-3" alt="">
       <?php
+        }
       }
       ?>
 
@@ -106,6 +130,25 @@
 
 <?php $this->start("js"); ?>
 <script>
+  var Hlink = document.getElementById("Hlink");
+  var Humanas = document.getElementById("H");
+  Humanas.addEventListener('click', e => {
+    Hlink.click();
+  });
+
+  var Elink = document.getElementById("Elink");
+  var Exatas = document.getElementById("E");
+  Exatas.addEventListener('click', e => {
+    Elink.click();
+  });
+
+  var Blink = document.getElementById("Blink");
+  var Biologicas = document.getElementById("B");
+  Biologicas.addEventListener('click', e => {
+    Blink.click();
+  });
+
+
   document.addEventListener('click', e => {
     let handle;
 

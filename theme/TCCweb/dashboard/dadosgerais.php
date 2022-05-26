@@ -1,6 +1,7 @@
 <style>
     .img_banner {
-        object-fit: cover;
+        object-fit: contain;
+        background-color: #cfd1d1;
     }
 </style>
 <?php $this->layout("../_theme"); ?>
@@ -45,6 +46,16 @@
                         }
                         ?>
                     </select>
+                    <div class="row mx-1 my-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="id_privado" id="inlineRadio1" value="0" <?php if($dados['tcc']->id_privado == 0){echo "checked"; } ?>>
+                            <label class="form-check-label" for="inlineRadio1">Público</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="id_privado" id="inlineRadio2" value="1" <?php if($dados['tcc']->id_privado == 1){echo "checked"; } ?>>
+                            <label class="form-check-label" for="inlineRadio2">Privado</label>
+                        </div>
+                    </div>
                     <div class="mb-3 my-4">
                         <input type="submit" class="form-control btn btn-success" value="Confirmar">
                     </div>
@@ -104,7 +115,7 @@
                                         echo IMG . '/Logos/Maximizada colorida.png';
                                     } else {
                                         echo IMG . '/uploads/imgUpload/' . $dados['tcc']->im_banner;
-                                    } ?>" alt="" width="100%" height="630" class="img_banner bg-secondary border border-0 rounded-3 p-0 btn shadow-sm my-2" id="img_banner">
+                                    } ?>" alt="" width="100%" height="630" class="img_banner border border-0 rounded-3 p-0 btn shadow-sm my-2" id="img_banner">
                         <div class="row">
                             <div class="card bg-light border border-0">
                                 <input type="submit" class="col btn btn-outline-success my-2">

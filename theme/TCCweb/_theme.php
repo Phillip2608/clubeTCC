@@ -20,19 +20,20 @@
 	<link rel="stylesheet" href="<?= CSS ?>/cores.css">
 	<link rel='stylesheet' href="<?= CSS ?>/estilo.css">
 	<link rel="stylesheet" href="<?= CSS ?>/carousel.css">
+	<link rel="stylesheet" href="<?= CSS ?>/StyleCategorias.css">
     <?php
 	if (($_SESSION['id_tema'] == null) || ($_SESSION['id_tema'] == 1)) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/branco.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/Branco.css'>";
 	} elseif ($_SESSION['id_tema'] == 2) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/escuro.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/Escuro.css'>";
 	} elseif ($_SESSION['id_tema'] == 3) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/vermelho.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/Vermelho.css'>";
 	} elseif ($_SESSION['id_tema'] == 4) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/azul.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/Azul.css'>";
 	} elseif ($_SESSION['id_tema'] == 5) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/roxo.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/Roxo.css'>";
 	} elseif ($_SESSION['id_tema'] == 7) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/roxo.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/Roxo.css'>";
 	}
 	?>
 	

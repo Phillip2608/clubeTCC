@@ -3,17 +3,20 @@
     width: 4rem;
     height: 4rem;
     object-fit: cover;
-}
+  }
 </style>
 <header>
   <div class="px-3 py-2 topo">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <button class="btn botao_cor" data-bs-toggle="modal" data-bs-target="#menu_lateral">
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
-            <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-          </svg>
-        </button>
+        <?php if ($_SESSION['id_usuario'] != null) { ?>
+          <button class="btn botao_cor" data-bs-toggle="modal" data-bs-target="#menu_lateral">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
+              <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+            </svg>
+          </button>
+        <?php
+        } ?>
         <a href="<?= URL ?>" class="d-flex align-items-center mx-3 my-2 my-lg-0 me-lg-auto text-decoration-none">
           <img src="<?= TCC ?>" width="60" height="60">
         </a>
@@ -26,11 +29,13 @@
             <a href="<?= URL ?>/users/cadastrar" class="btn btn-warning">Sign-up</a>
           </div>
         <?php } ?>
-        <picture>
-          <source srcset="<?= $_SESSION['im_usuario'] ?>" type="image/svg+xml">
-          <img src="<?= $_SESSION['im_usuario'] ?>" width="60" height="60" class="img_user rounded-circle" alt="">
-        </picture>
-        
+
+        <?php if ($_SESSION['id_usuario'] != null) { ?>
+          <picture>
+            <source srcset="<?= $_SESSION['im_usuario'] ?>" type="image/svg+xml">
+            <img src="<?= $_SESSION['im_usuario'] ?>" width="60" height="60" class="img_user rounded-circle" alt="">
+          </picture>
+        <?php } ?>
       </div>
     </div>
   </div>

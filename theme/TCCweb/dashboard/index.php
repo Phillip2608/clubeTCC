@@ -7,18 +7,18 @@
                 <h5>Para começar é facil, basta falar o nome!</h5>
             </div>
         </div>
-        <?php foreach($dados['meusTCC'] as $meutcc){ 
+        <?php foreach ($dados['meusTCC'] as $meutcc) {
             $dados['idtcc'] = $meutcc->id_tcc;
         ?>
-        <div class="row my-2">
-            <div class="col-11 mx-auto btn-tcc">
-                <a href="<?=URL?>/dashboard/geral/<?=$_SESSION['id_usuario']?>/<?= $dados['idtcc']; ?>" class="btn p-5 d-flex bg-success justify-content-center my-4">
-                    <h1 class="p-2"><?= $meutcc->nm_tcc ?></h1>
-                </a>
+            <div class="row my-2">
+                <div class="col-11 mx-auto btn-tcc">
+                    <a href="<?= URL ?>/dashboard/geral/<?= $_SESSION['id_usuario'] ?>/<?= $dados['idtcc']; ?>" class="btn p-5 d-flex bg-success justify-content-center my-4">
+                        <h1 class="p-2"><?= $meutcc->nm_tcc ?></h1>
+                    </a>
+                </div>
             </div>
-        </div>
-        <?php  
-        
+        <?php
+
         } ?>
         <div class="row my-2">
             <div class="col-11 mx-auto">
@@ -33,23 +33,34 @@
             <form action="<?= $router->route("dashboard.index"); ?>" method="POST">
                 <div class="col-11 mx-auto py-3">
                     <label for="TCC" class="form-label">Nome do TCC</label>
-                    <input type="text" class="form-control <?= $dados['erroTCC'] ? 'is-invalid' : '' ?>" name="nm_tcc" id="TCC" placeholder="Aperte ENTER para criar" value="<?= $dados['nomeTCC']?>">
+                    <input type="text" class="form-control <?= $dados['erroTCC'] ? 'is-invalid' : '' ?>" name="nm_tcc" id="TCC" placeholder="Aperte ENTER para criar" value="<?= $dados['nomeTCC'] ?>">
                     <div class="invalid-feedback">
                         <?= $dados['erroTCC'] ?>
                     </div>
                     <select name="id_categoria" id="" class="form-select my-3 <?= $dados['erroIdTCC'] ? 'is-invalid' : '' ?>">
                         <option value="0" disabled selected>Classifique seu TCC</option>
                         <?php
-                            foreach($dados['categorias'] as $categoria){
+                        foreach ($dados['categorias'] as $categoria) {
                         ?>
                             <option value="<?= $categoria->id_categoria ?>"><?= $categoria->nm_categoria ?></option>
                         <?php
-                            }
+                        }
                         ?>
                     </select>
                     <div class="invalid-feedback">
                         <?= $dados['erroIdTCC'] ?>
                     </div>
+                    <div class="row mx-1 my-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="id_privado" id="inlineRadio1" value="0">
+                            <label class="form-check-label" for="inlineRadio1">Público</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="id_privado" id="inlineRadio2" value="1">
+                            <label class="form-check-label" for="inlineRadio2">Privado</label>
+                        </div>
+                    </div>
+
                     <input type="submit" class="btn btn-success" value="Criar">
                 </div>
             </form>
