@@ -94,5 +94,22 @@ p {
     color: var(--vermelho-fraco);
 }
 
+.modalTCC {
+    background-color: var(--bg-claro);
+}
+
+.modalTCC::-webkit-scrollbar:hover {
+    background-color: #aaa;
+}
+
+.modalTCC::-webkit-scrollbar-thumb {
+    background-color: var(--vermelho-fraco);
+    border-radius: 10px;
+}
+
+.modalTCC::-webkit-scrollbar-thumb:hover {
+    background-color: var(--rosa);
+}
+
 
 /*FIM DASH*/

@@ -91,5 +91,22 @@ p {
     color: var(--roxin-escuro);
 }
 
+.modalTCC {
+    background-color: var(--roxo-lilas);
+}
+
+.modalTCC::-webkit-scrollbar:hover {
+    background-color: #aaa;
+}
+
+.modalTCC::-webkit-scrollbar-thumb {
+    background-color: var(--roxo-escurao);
+    border-radius: 10px;
+}
+
+.modalTCC::-webkit-scrollbar-thumb:hover {
+    background-color: var(--roxo-escurao);
+}
+
 
 /*FIM DASHBOARD*/

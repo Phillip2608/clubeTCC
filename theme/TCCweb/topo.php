@@ -33,16 +33,16 @@
         <?php if ($_SESSION['id_usuario'] != null) { ?>
           <picture>
             <source srcset="<?= $_SESSION['im_usuario'] ?>" type="image/svg+xml">
-            <img src="<?= $_SESSION['im_usuario'] ?>" width="60" height="60" class="img_user rounded-circle" alt="">
+            <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" width="60" height="60" class="img_user rounded-circle" alt="">
           </picture>
         <?php } ?>
       </div>
     </div>
   </div>
 </header>
-<div class="modal true topo caralho" id="menu_lateral" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal modal-topo true topo caralho" id="menu_lateral" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
-    <div class="modal-content topo">
+    <div class="modal-content modal-content-topo topo">
       <div class="modal-header">
         <h4 class="modal-title menu_titulo" id="exampleModalLabel">MENU</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

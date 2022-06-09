@@ -91,5 +91,36 @@ p {
     color: var(--bg-amarelo-forte);
 }
 
+.modalTCC {
+    background-color: var(--escuro-fraco);
+}
+
+.modalTCC::-webkit-scrollbar:hover {
+    background-color: #aaa;
+}
+
+.modalTCC::-webkit-scrollbar-thumb {
+    background-color: var(--bg-white);
+    border-radius: 10px;
+}
+
+.modalTCC::-webkit-scrollbar-thumb:hover {
+    background-color: var(--black);
+}
+
+.close_tcc:hover {
+    background-color: var(--bg-white);
+    color: var(--escuro-fraco);
+}
+
+.text-branco {
+    color: var(--bg-white);
+}
+
+.bg-escuro {
+    background-color: var(--escuro-fraco);
+    color: var(--bg-white);
+}
+
 
 /*FIM DASHBOARD*/

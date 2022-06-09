@@ -15,6 +15,11 @@ textarea {
     outline: none;
 }
 
+.img_banner {
+    object-fit: contain;
+    background-color: #cfd1d1;
+}
+
 
 /*FIM-HOME*/
 
@@ -47,13 +52,13 @@ li {
 
 /*MENU LATERAL*/
 
-.modal {
+.modal-topo {
     width: 300px;
     transition: .5s;
     transition-property: left;
 }
 
-.modal-content {
+.modal-content-topo {
     width: 300px;
 }
 
@@ -265,3 +270,53 @@ li {
 
 
 /*FIM MODAL*/
+
+.cont-tcc {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: grid;
+    place-items: center;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+}
+
+.modalTCC {
+    width: 0;
+    height: 0;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 6;
+    box-shadow: 0 0 10px 0 #00000070;
+    overflow: hidden;
+    overflow-y: scroll;
+    transition: width 0.15s, height 0.15s;
+}
+
+.modalTCC::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 10px;
+}
+
+.modal-show>.modalTCC {
+    width: 95%;
+    height: 90vh;
+}
+
+.modal-show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.close_tcc {
+    width: 55px;
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    transition: .5s all;
+}

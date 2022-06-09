@@ -12,7 +12,7 @@
         ?>
             <div class="row my-2">
                 <div class="col-11 mx-auto btn-tcc">
-                    <a href="<?= URL ?>/dashboard/geral/<?= $_SESSION['id_usuario'] ?>/<?= $dados['idtcc']; ?>" class="btn p-5 d-flex bg-success justify-content-center my-4">
+                    <a href="<?= $router->route("dashboard.geral"); ?>" class="btn p-5 d-flex bg-success justify-content-center my-4">
                         <h1 class="p-2"><?= $meutcc->nm_tcc ?></h1>
                     </a>
                 </div>

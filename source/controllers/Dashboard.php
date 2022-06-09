@@ -42,14 +42,14 @@ class Dashboard
                 }
             } else if ($dados['privado'] == null) {
                 $dados['privado'] = 0;
-                $this->criarTCC($dados['nomeTCC'], $dados['categoria'], $dados['privado']);
+                $this->criarTCC($dados['nomeTCC'], $_SESSION['id_usuario'],$dados['categoria'], $dados['privado']);
                 redirect("/dashboard/index/" . $_SESSION['id_usuario']);
             } else if (empty($select_cater)) {
                 $dados['erroIdTCC'] = "Escolha uma categoria!";
                 $dados['categorias'] = $tcc_categorias;
                 echo $this->view->render("/index", ["dados" => $dados]);
             } else {
-                $this->criarTCC($dados['nomeTCC'], $dados['categoria'], $dados['privado']);
+                $this->criarTCC($dados['nomeTCC'], $_SESSION['id_usuario'],$dados['categoria'], $dados['privado']);
                 redirect("/dashboard/index/" . $_SESSION['id_usuario']);
             }
         } else {
@@ -111,7 +111,7 @@ class Dashboard
 
             if (isset($dados['tcc']->id_tcc)) {
                 if ($dados['tcc']->id_usuario == $id_user) {
-                    echo $this->view->render("/geral", ["dados" => $dados]);
+                    echo $this->view->render("/geral/{$_SESSION['id_usuario']}/{$dados['tcc']->id_tcc}", ["dados" => $dados]);
                 } else {
                     redirect("/dashboard/index/" . $id_user, $dados);
                 }
@@ -440,13 +440,13 @@ class Dashboard
         return $result;
     }
 
-    private function criarTCC($nomeTCC, $idCategoria, $idPrivado)
+    private function criarTCC($nomeTCC, $id_usuario, $idCategoria, $idPrivado)
     {
         $tcc = new TCC();
         $tcc->nm_tcc = $nomeTCC;
         $tcc->id_categoria = $idCategoria;
         $tcc->id_privado = $idPrivado;
-        $tcc->id_usuario = $_SESSION['id_usuario'];
+        $tcc->id_usuario = $id_usuario;
         $tcc->save();
     }
 

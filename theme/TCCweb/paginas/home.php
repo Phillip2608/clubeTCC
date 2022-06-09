@@ -34,17 +34,21 @@
     </button>
     <div class="slider">
       <?php
-      foreach ($dados['humanas'] as $humanas) {
-        if ($humanas->id_privado == 0) {
+      foreach ($dados['tccs'] as $tcc) {
+        if ($tcc->id_categoria == 1) {
+          if ($tcc->id_privado == 0) {
       ?>
-
-          <img src="<?php if ($humanas->im_banner == null) {
-                      echo IMG . '/Logos/Maximizada colorida.png';
-                    } else {
-                      echo IMG . '/uploads/imgUpload/' . $humanas->im_banner;
-                    } ?>" class="rounded-3" alt="">
-
+            <form action="<?= $router->route("paginas.create"); ?>" class="form_tcc d-none" method="POST" enctype="multipart/form-data">
+              <input type="text" name="id_viewTCC" id="id_viewTCC" class="d-none" value="<?= $tcc->id_tcc ?>">
+              <input type="submit" class="d-none submitTCC<?= $tcc->id_tcc ?>">
+            </form>
+            <img src="<?php if ($tcc->im_banner == null) {
+                        echo IMG . '/Logos/Maximizada colorida.png';
+                      } else {
+                        echo IMG . '/uploads/imgUpload/' . $tcc->im_banner;
+                      } ?>" class="shadow rounded-3 imgTCC<?= $tcc->id_tcc ?>" alt="" onclick="clickForm(<?= $tcc->id_tcc ?>)">
       <?php
+          }
         }
       }
       ?>
@@ -71,15 +75,21 @@
     </button>
     <div class="slider">
       <?php
-      foreach ($dados['exatas'] as $exatas) {
-        if ($exatas->id_privado == 0) {
+      foreach ($dados['tccs'] as $tcc) {
+        if ($tcc->id_categoria == 2) {
+          if ($tcc->id_privado == 0) {
       ?>
-          <img src="<?php if ($exatas->im_banner == null) {
-                                echo IMG . '/Logos/Maximizada colorida.png';
-                            } else {
-                                echo IMG . '/uploads/imgUpload/' . $exatas->im_banner;
-                            } ?>" class="shadow rounded-3" alt="" >
+            <form action="<?= $router->route("paginas.create"); ?>" class="form_tcc d-none" method="POST" enctype="multipart/form-data">
+              <input type="text" name="id_viewTCC" id="id_viewTCC" class="d-none" value="<?= $tcc->id_tcc ?>">
+              <input type="submit" class="d-none submitTCC<?= $tcc->id_tcc ?>">
+            </form>
+            <img src="<?php if ($tcc->im_banner == null) {
+                        echo IMG . '/Logos/Maximizada colorida.png';
+                      } else {
+                        echo IMG . '/uploads/imgUpload/' . $tcc->im_banner;
+                      } ?>" class="shadow rounded-3 imgTCC<?= $tcc->id_tcc ?>" alt="" onclick="clickForm(<?= $tcc->id_tcc ?>)">
       <?php
+          }
         }
       }
       ?>
@@ -106,19 +116,24 @@
     </button>
     <div class="slider">
       <?php
-      foreach ($dados['biologicas'] as $biologicas) {
-        if ($biologicas->id_privado == 0) {
+      foreach ($dados['tccs'] as $tcc) {
+        if ($tcc->id_categoria == 3) {
+          if ($tcc->id_privado == 0) {
       ?>
-          <img src="<?php if ($biologicas->im_banner == null) {
-                                echo IMG . '/Logos/Maximizada colorida.png';
-                            } else {
-                                echo IMG . '/uploads/imgUpload/' . $biologicas->im_banner;
-                            } ?>" class="shadow rounded-3" alt="">
+            <form action="<?= $router->route("paginas.create"); ?>" class="form_tcc d-none" method="POST" enctype="multipart/form-data">
+              <input type="text" name="id_viewTCC" id="id_viewTCC" class="d-none" value="<?= $tcc->id_tcc ?>">
+              <input type="submit" class="d-none submitTCC<?= $tcc->id_tcc ?>">
+            </form>
+            <img src="<?php if ($tcc->im_banner == null) {
+                        echo IMG . '/Logos/Maximizada colorida.png';
+                      } else {
+                        echo IMG . '/uploads/imgUpload/' . $tcc->im_banner;
+                      } ?>" class="shadow rounded-3 imgTCC<?= $tcc->id_tcc ?>" alt="" onclick="clickForm(<?= $tcc->id_tcc ?>)">
       <?php
+          }
         }
       }
       ?>
-
     </div>
     <button class="handle right-handle">
       <div class="handle-text">
@@ -126,10 +141,75 @@
       </div>
     </button>
   </div>
+
+  <!-- Modal -->
+  <div class="cont-tcc" id="modalTCC" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modalTCC">
+    </div>
+  </div>
+
 </section>
 
 <?php $this->start("js"); ?>
 <script>
+  const activeModalClass = 'modal-show';
+  var modalTCC = document.querySelector(".cont-tcc");
+  var modal = document.querySelector(".modalTCC");
+  var data_tcc = modal.getElementsByTagName("div");
+
+  function closeModal(){
+    modal.removeChild(data_tcc[0]);
+    modalTCC.classList.remove(activeModalClass);
+  } 
+
+  function clickForm(id_tcc) {
+    var imgTCC = document.querySelector(".imgTCC" + id_tcc);
+    var submitTCC = document.querySelector(".submitTCC" + id_tcc);
+    modalTCC.classList.add(activeModalClass);
+
+    modalTCC.addEventListener("click", e => {
+      if (modal.contains(e.target)) {
+        return;
+      }
+      closeModal();
+
+    });
+    console.log("cliquei" + id_tcc);
+    submitTCC.click();
+  }
+
+  $(function() {
+    function load(action) {
+      var load_div = $(".ajax_load");
+    }
+
+    $(".form_tcc").submit(function(e) {
+      e.preventDefault();
+      var form = $(this);
+      var form_ajax = $(".form_ajax");
+      var tcc = $(".modalTCC");
+
+      $.ajax({
+        url: form.attr("action"),
+        data: form.serialize(),
+        type: "POST",
+        dataType: "json",
+        beforeSend: function() {
+
+        },
+        success: function(callback) {
+          if (callback.tcc) {
+            console.log(callback);
+            tcc.prepend(callback.tcc);
+          }       
+        },
+        complete: function() {
+          
+        }
+      });
+    });
+  });
+
   var Hlink = document.getElementById("Hlink");
   var Humanas = document.getElementById("H");
   Humanas.addEventListener('click', e => {

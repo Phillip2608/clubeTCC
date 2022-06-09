@@ -218,6 +218,9 @@
                 <h2 class="py-3">Pesquisa de Campo</h2>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 d-flex justify-content-start mx-3">
+            <?php  if($dados['pesquisas'] == null){
+                echo "<div class='col mx-1 text-danger my-1'><h6>TCC sem pesquisa de campo!</h6></div>";
+            }else{ ?>
                 <?php foreach ($dados['pesquisas'] as $pesquisas) { ?>
                     <div class="col">
                         <div class="card shadow-sm">
@@ -246,7 +249,7 @@
 
                         </div>
                     </div>
-                <?php } ?>
+                <?php } }?>
             </div>
         </div>
 

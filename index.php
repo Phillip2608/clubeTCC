@@ -23,6 +23,7 @@ $router->group("paginas");
 $router->get("/comunidade", "Paginas:comunidade", "paginas.comunidade");
 $router->get("/noticias", "Paginas:noticias", "paginas.noticias");
 $router->get("/planos", "Paginas:planos", "paginas.planos");
+$router->post("/create", "Paginas:create", "paginas.create");
 
 /**
  * CATEGORIAS
