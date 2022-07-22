@@ -28,6 +28,7 @@
             </svg>
         </li>
     </a>
+    <!--
     <a class="nav-link" href="<?= URL ?>/configuracao/acess/<?= $_SESSION['id_usuario'] ?>">
         <li class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi mx-1 bi-ear" viewBox="0 0 16 16">
@@ -43,6 +44,7 @@
             </svg>
         </li>
     </a>
+    -->
 </ul>
 <div class="col-3 p-3 menu_config text-white menu_responsivo">
     <ul class="list-group">
@@ -71,6 +73,7 @@
                 Temas
             </li>
         </a>
+        <!--
         <a href="<?= URL ?>/configuracao/acess/<?= $_SESSION['id_usuario'] ?>">
             <li class="list-group-item py-3 d-flex flex-wrap align-items-center justify-content-lg-start">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi mx-1 bi-ear" viewBox="0 0 16 16">
@@ -88,5 +91,6 @@
                 Planos
             </li>
         </a>
+        -->
     </ul>
 </div>

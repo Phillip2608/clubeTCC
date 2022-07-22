@@ -10,7 +10,7 @@
     include 'menu_respon.php';
     ?>
     <div class="col-11 mx-auto bg-light py-1">
-        <div class="row p-4 row-cols-1 row-cols-sm-2 g-3 d-flex align-items-center">
+        <div class="row p-4 row-cols-1 row-cols-sm-2 g-3 d-flex">
             <div class="col">
                 <?= message('Confirma'); ?>
                 <h2><?= $dados['titulo'] ?></h2>
@@ -46,6 +46,9 @@
                         }
                         ?>
                     </select>
+                    <label for="categorias">
+                        <h5>Disponibilidade</h5>
+                    </label>
                     <div class="row mx-1 my-2">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="id_privado" id="inlineRadio1" value="0" <?php if($dados['tcc']->id_privado == 0){echo "checked"; } ?>>
@@ -60,6 +63,7 @@
                         <input type="submit" class="form-control btn btn-success" value="Confirmar">
                     </div>
                 </form>
+                <!--
                 <h4 class="my-3">Integrantes</h4>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 d-flex justify-content-start align-items-center">
                     <?php foreach ($dados['inter'] as $inter) { ?>
@@ -104,6 +108,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
             <div class="col">
                 <div class="card bg-light border border-0">

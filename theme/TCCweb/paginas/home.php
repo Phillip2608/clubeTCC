@@ -16,7 +16,7 @@
   </div>
   <div class="row my-5">
     <div class="col d-flex justify-content-center">
-      <h1 class="text-center">Venha se divertir com o futuro do TCC !</h2>
+      <h1 class="text-center">Venha se divertir com o futuro do TCC !</h1>
     </div>
   </div>
 </section>

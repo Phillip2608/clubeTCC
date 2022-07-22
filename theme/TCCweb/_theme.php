@@ -18,12 +18,12 @@
 
 	<!-- CSS BRUTO DO SITE -->
 	<link rel="stylesheet" href="<?= CSS ?>/cores.css">
-	<link rel='stylesheet' href="<?= CSS ?>/Style.css">
-	<link rel="stylesheet" href="<?= CSS ?>/carousel.css">
+	<link rel='stylesheet' href="<?= CSS ?>/estilo.css">
+	<link rel="stylesheet" href="<?= CSS ?>/Carousel.css">
 	<link rel="stylesheet" href="<?= CSS ?>/StyleCategorias.css">
     <?php
 	if (($_SESSION['id_tema'] == null) || ($_SESSION['id_tema'] == 1)) {
-		echo "<link rel='stylesheet' href='" . CSS . "/temas/Branco.css'>";
+		echo "<link rel='stylesheet' href='" . CSS . "/temas/branco.css'>";
 	} elseif ($_SESSION['id_tema'] == 2) {
 		echo "<link rel='stylesheet' href='" . CSS . "/temas/esscuro.css'>";
 	} elseif ($_SESSION['id_tema'] == 3) {
@@ -36,7 +36,8 @@
 		echo "<link rel='stylesheet' href='" . CSS . "/temas/roxo.css'>";
 	}
 	?>
-	
+	<link rel="shortcut icon" href="<?= URL ?>/theme/TCCweb/9976Maximizadacolorida.ico" type="image/x-icon">
+	<title> Clube do TCC </title>
 </head>
 
 <body class="fundo">

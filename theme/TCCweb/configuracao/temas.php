@@ -40,6 +40,7 @@
                             </label>
                         </div>
                     </div>
+                    <!--
                     <h3 class="mx-3 my-2">Tema Contraste</h3>
                     <div class="row my-4 d-flex align-items-center justify-content-start mx-5 flex-wrap">
                         <div class="col mx-2 btn-temas col-lg-1 d-flex justify-content-center flex-wrap align-items-center">
@@ -49,6 +50,7 @@
                             </label>
                         </div>
                     </div>
+                    -->
                     <div class="row">
                         <div class="col mx-3 d-flex justify-content-center">
                             <input type="submit" class="btn btn-success" value="Salvar Tema!">

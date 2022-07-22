@@ -1,8 +1,8 @@
 <div class="data-tcc">
-    <div class="row p-2">
+    <div class="row card-header topoModalTCC">
         <div class="col d-flex justify-content-between align-items-center">
-            <h1><?= $tcc['tcc']->nm_tcc ?></h1>
-            <h1 onclick="closeModal()" class="close_tcc rounded-circle">X</h1>
+            <h2><?= $tcc['tcc']->nm_tcc ?></h2>
+            <h2 onclick="closeModal()" class="close_tcc rounded-circle">X</h2>
         </div>
 
     </div>
@@ -12,7 +12,7 @@
                             echo IMG . '/Logos/Maximizada colorida.png';
                         } else {
                             echo IMG . '/uploads/imgUpload/' . $tcc['tcc']->im_banner;
-                        } ?>" alt="" width="100%" height="650" class="img_banner border border-0 rounded-3 p-0 shadow-sm my-2">
+                        } ?>" alt="" width="100%" height="750" class="img_banner border border-0 rounded-3 p-0 shadow-sm my-2">
 
         </div>
         <div class="col">
@@ -25,7 +25,7 @@
                                 } ?>" alt="" width="100" height="100" class="img_user_upp bg-secondary rounded-circle p-0">
                     <div class="mx-2">
                         <h4 class="text-branco"><?= $tcc['tcc']->nm_usuario ?></h4>
-                        <h6 class="text-branco"><?= date("d F | h:i a ", strtotime($tcc['tcc']->dt_tcc)) ?></h6>
+                        <h6 class="text-branco"><?= date("d M | h:i a ", strtotime($tcc['tcc']->dt_tcc)) ?></h6>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="col">
                     <h3 class="text-branco">Descrição</h3>
                     <h5 class="text-branco"><?php if ($tcc['tcc']->ds_tcc == null) {
-                                                echo "TCC sem documentação!";
+                                                echo "TCC sem descrição!";
                                             } else {
                                                 echo $tcc['tcc']->ds_tcc;
                                             } ?></h5>
@@ -54,11 +54,12 @@
             <div class="row my-4 mx-1">
                 <div class="col">
                     <h3 class="text-branco">Documentos</h3>
-                    <h5 class="text-warning">Clique para download</h5>
+                    
                     <?php
                     if ($tcc['docs'] == null) {
                         echo "<div class='col mx-1 text-danger my-1'><h6>TCC sem documentação!</h6></div>";
                     } else {
+                        echo "<h5 class='text-warning'>Clique para download</h5>";
                     ?>
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-1 d-flex justify-content-start">
                             <?php
@@ -136,46 +137,84 @@
                     <?php } ?>
                 </div>
             </div>
+            <div class="row my-4 mx-1">
+                <div class="col">
+                    <h3 class="">Integrantes</h3>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 d-flex justify-content-start align-items-center">
+                    <?php foreach ($tcc['inter'] as $inter) { ?>
+                        <div class="col d-flex justify-content-center flex-wrap align-items-center text-center">
+                            <div class="card border border-0 inter_modalTCC">
+                                <?php if ($inter->id_cargo == 1) { ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star-fill mx-auto link-warning" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                <?php } elseif ($inter->id_cargo == 2) { ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star-half link-warning mx-auto" viewBox="0 0 16 16">
+                                        <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" />
+                                    </svg>
+                                <?php } else { ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-mortarboard-fill link-dark mx-auto" viewBox="0 0 16 16">
+                                        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                                        <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z" />
+                                    </svg>
+                                <?php } ?>
+                                    <h5><?= $inter->nm_cargo ?></h5>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" class="bi bi-person-fill d-block mx-auto border border-0 rounded-circle bg-secondary p-2" viewBox="0 0 16 16">
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg>
+                                    <div class="mx-2">
+                                        <h5> <?= $inter->nm_usuario ?></h5>
+                                        <h6 class="funcao_user"> <?php if ($inter->nm_funcao == null) {
+                                                                            echo "Sem função";
+                                                                        } else {
+                                                                            echo $inter->nm_funcao;
+                                                                        } ?> </h6>
+                                    </div>
+                            </div>
+
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <?php  if($tcc['pesq'] != null){ ?>
     <div class="row p-2">
         <h1>Pesquisas de Campo</h1>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 d-flex justify-content-start mx-3 view-pesquisas">
-            <?php  if($tcc['pesq'] == null){
-                echo "<div class='col mx-1 text-danger my-1'><h6>TCC sem pesquisa de campo!</h6></div>";
-            }else{ ?>
-            <?php foreach ($tcc['pesq'] as $pesquisas) { ?>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <div class="card-header border border-0 rounded-top card_header_geral">
-                            <h3><?= $pesquisas->nm_titulo ?></h3>
-                        </div>
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
+        <?php foreach ($tcc['pesq'] as $pesquisas) { ?>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-header border border-0 rounded-top card_header_geral">
+                        <h3><?= $pesquisas->nm_titulo ?></h3>
+                    </div>
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                    </svg>
 
-                        <div class="card-body card_body_geral">
-                            <p class="card-text"><?php if ($pesquisas->ds_pesquisa == null) {
+                    <div class="card-body card_body_geral">
+                        <p class="card-text"><?php if ($pesquisas->ds_pesquisa == null) {
                                                         echo "Pesquisa sem descrição!";
                                                     } else {
                                                         echo $pesquisas->ds_pesquisa;
                                                     } ?></p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="card-text">Criador:<?= $pesquisas->nm_usuario ?></div>
-                                <small class="text-light">Em:<?= date("d/m/Y", strtotime($pesquisas->dt_pesquisa)) ?></small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col my-2">
-                        <div class="card bg-escuro">
-                            <a href="<?= $pesquisas->ds_link ?>" target="_blank" class="btn btn-outline-primary p-2">
-                                Visualizar pesquisa
-                            </a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="card-text">Criador:<?= $pesquisas->nm_usuario ?></div>
+                            <small class="text-light">Em:<?= date("d/m/Y", strtotime($pesquisas->dt_pesquisa)) ?></small>
                         </div>
                     </div>
                 </div>
-            <?php } } ?>
-        </div>
+                <div class="col my-2">
+                    <div class="card bg-escuro">
+                        <a href="<?= $pesquisas->ds_link ?>" target="_blank" class="btn btn-outline-primary p-2">
+                            Visualizar pesquisa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php } } ?>
+    </div>
 </div>

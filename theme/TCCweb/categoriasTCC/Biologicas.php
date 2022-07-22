@@ -6,6 +6,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-3 d-flex justify-content-start">
         <?php
         foreach ($dados['tccsB'] as $tccB) {
+            if($tccB->id_privado == 0){
         ?>
             <div class="col card-cater">
                 <form action="<?= $router->route("paginas.create"); ?>" class="form_tccB d-none" method="POST" enctype="multipart/form-data">
@@ -19,6 +20,7 @@
                             } ?>" class="img-card-cater shadow rounded-3 imgTCC<?= $tccB->id_tcc ?>" alt="" onclick="clickForm(<?= $tccB->id_tcc ?>)">
             </div>
         <?php
+            }
         }
         ?>
     </div>

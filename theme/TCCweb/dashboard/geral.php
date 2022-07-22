@@ -8,7 +8,7 @@
 <main>
     <section class="container my-5">
         <?php
-        include 'menu_respon.php';
+            include 'menu_respon.php';
         ?>
         <div class="col-11 mx-auto bg-light py-3">
             <div class="row p-4 row-cols-1 row-cols-sm-2 g-3">
@@ -214,42 +214,43 @@
                     </div>
                 </div>
             </div>
+            
+            
+            <?php  if($dados['pesquisas'] != null){ ?>
             <div class="row mx-3">
                 <h2 class="py-3">Pesquisa de Campo</h2>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 d-flex justify-content-start mx-3">
-            <?php  if($dados['pesquisas'] == null){
-                echo "<div class='col mx-1 text-danger my-1'><h6>TCC sem pesquisa de campo!</h6></div>";
-            }else{ ?>
                 <?php foreach ($dados['pesquisas'] as $pesquisas) { ?>
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <div class="card-header border border-0 rounded-top card_header_geral">
-                                <h3><?= $pesquisas->nm_titulo ?></h3>
-                            </div>
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
-
-                            <div class="card-body card_body_geral">
-                                <p class="card-text"><?= $pesquisas->ds_pesquisa ?></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="card-text">Criador:<?= $pesquisas->nm_usuario ?></div>
-                                    <small class="text-light">Em:<?= date("d/m/Y", strtotime($pesquisas->dt_pesquisa)) ?></small>
-                                </div>
-                            </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-header border border-0 rounded-top card_header_geral">
+                            <h3><?= $pesquisas->nm_titulo ?></h3>
                         </div>
-                        <div class="col my-2">
-                            <div class="card bg-light">
-                                <a href="<?= $pesquisas->ds_link ?>" target="_blank" class="btn btn-outline-dark p-2">
-                                    Visualizar pesquisa
-                                </a>
-                            </div>
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
 
+                        <div class="card-body card_body_geral">
+                            <p class="card-text"><?= $pesquisas->ds_pesquisa ?></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-text">Criador:<?= $pesquisas->nm_usuario ?></div>
+                                <small class="text-light">Em:<?= date("d/m/Y", strtotime($pesquisas->dt_pesquisa)) ?></small>
+                            </div>
                         </div>
                     </div>
-                <?php } }?>
+                    <div class="col my-2">
+                        <div class="card bg-light">
+                            <a href="<?= $pesquisas->ds_link ?>" target="_blank" class="btn btn-outline-dark p-2">
+                                Visualizar pesquisa
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            <?php } }?>
+                    
             </div>
         </div>
 

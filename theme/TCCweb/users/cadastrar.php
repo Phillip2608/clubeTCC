@@ -1,69 +1,61 @@
-<?php $this->layout("../_theme"); ?>
-<main class="container fundo">
-	<div class="row justify-content-center mx-auto my-5">
-		<div class="col-5 my-5">
-			<div class="card my-5 shadow rounded-2">
-				<div class="card-header rounded-2">
-					<h1 class="text-white mx-4 my-3">Cadastre-se</h1>
-				</div>
-				<div class="card-body rounded-2">
-					<form class="row justify-content-center" action="<?= $router->route("users.cadastrar"); ?>" method="POST">
-						<div class="row">
-							<img src="<?= ICON.'/TCC_PRETO.svg'?>" width="80" height="80" class="my-3">
-							<div class="col mx-4 my-3">
-								<div class="input-group mb-3">
-  									<label for="nome"><span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-  									<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-									</svg>
-									</span></label>
-  									<input type="text" name="nm_usuario" id="nome" class="form-control <?= $dados['nome_erro'] ? 'is-invalid' : '' ?>" placeholder="Nome" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['nome'] ?>">
-  									<div class="invalid-feedback">
-                        				<?= $dados['nome_erro'] ?>
-                    				</div>
-								</div>
-							</div>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?= CSS ?>/STYLE_LOGin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<?= URL ?>/theme/TCCweb/9976Maximizadacolorida.ico" type="image/x-icon">
+    <title> Clube do TCC </title>
+</head>
+<body>
+    <main class="cad_fundo">
+        <section class="caixa_login cor_diploma p-1 rounded-2 shadow">
+            <div class="m-4 border-top border-bottom border-secondary">
+                    <div class="text-center">
+                        <img class="my-2" src="<?= IMG ?>/Logos/Minimizada_colorida.svg" width="200" height="165">
+                        <h1 class="tamanho_1 my-1">Entre e faça parte do futuro do seu TCC</h1>
+                        <h3 class="tamanho_2 my-1">Juntos, podemos ser maiores!</h3>
+                        <h3 class="tamanho_2 my-1">Aqui você pode desfrutar do conhecimento e da facilidade de criar seu próprio TCC do zero.</h3>
+                        <h3 class="tamanho_2 my-1">Então não deixe de fazer parte e creça conosco, aqui o mundo é bem maior.</h3>
+                    </div>
+					<form class="" action="<?= $router->route("users.cadastrar"); ?>" method="POST">
+						<div class="row my-2">
+						    <div class="col mx-4 d-flex justify-content-start my-2">
+						        <input type="text" name="nm_usuario" id="nome" class="input_cad<?= $dados['nome_erro'] ? 'is-invalid' : '' ?>" placeholder="Nome" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['nome'] ?>">
+  								<div class="invalid-feedback">
+                        			<?= $dados['nome_erro'] ?>
+                    			</div>
+						    </div>
+  							<div class="col mx-4 d-flex justify-content-end my-2">
+  								<input type="email" id="email" name="nm_email" class="input_cad <?= $dados['email_erro'] ? 'is-invalid' : '' ?>" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['email'] ?>">
+  								<div class="invalid-feedback">
+                        			<?= $dados['email_erro'] ?>
+                    			</div>
+						    </div>
 						</div>
-						<div class="row">
-							<div class="col mx-4 my-3">
-								<div class="input-group mb-3">
-  									<label for="email"><span class="input-group-text" id="basic-addon1"><svg xmlns="	http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-  									<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 	0 0 6z"/>
-									</svg></span></label>
-  									<input type="email" id="email" name="nm_email" class="form-control <?= $dados['email_erro'] ? 'is-invalid' : '' ?>" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['email'] ?>">
-  									<div class="invalid-feedback">
-                        				<?= $dados['email_erro'] ?>
-                    				</div>
-								</div>
+						<div class="row my-2">
+							<div class="col d-flex justify-content-center my-2">
+							    <input type="password" id="senha" name="id_senha" class="input_cad <?= $dados['senha_erro'] ? 'is-invalid' : '' ?>" placeholder="Senha" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['senha'] ?>">
+  								<div class="invalid-feedback">
+                        			<?= $dados['senha_erro'] ?>
+                    			</div>
 							</div>
+  							<div class="col d-flex justify-content-center my-2">
+  								<input type="password" id="confirm_senha" name="confirm_senha" class="input_cad <?= $dados['confirm_erro'] ? 'is-invalid' : '' ?>" placeholder="Confirme sua senha" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['confirm_senha'] ?>">
+  								<div class="invalid-feedback">
+                        			<?= $dados['confirm_erro'] ?>
+                    			</div>	
+						    </div>		
 						</div>
+						
 						<div class="row">
-							<div class="col mx-4 my-2">
-								<div class="input-group mb-3">
-  									<label for="senha"><span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
-  									<path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
-  									<path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-									</svg></span></label>
-  									<input type="password" id="senha" name="id_senha" class="form-control <?= $dados['senha_erro'] ? 'is-invalid' : '' ?>" placeholder="Senha" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['senha'] ?>">
-  									<div class="invalid-feedback">
-                        				<?= $dados['senha_erro'] ?>
-                    				</div>
-								</div>
-							</div>
+						    <div class="col d-flex justify-content-center">
+						        <input type="submit" name="" class="butao_cad my-2" value="Cadastrar">
+						    </div>
 						</div>
-						<div class="row">
-							<div class="col mx-4 my-2">
-								<div class="input-group mb-3">
-  									<label for="confirm_senha"><span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
-  									<path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-									</svg></span></label>
-  									<input type="password" id="confirm_senha" name="confirm_senha" class="form-control <?= $dados['confirm_erro'] ? 'is-invalid' : '' ?>" placeholder="Confirme sua senha" aria-label="Username" aria-describedby="basic-addon1" value="<?= $dados['confirm_senha'] ?>">
-  									<div class="invalid-feedback">
-                        				<?= $dados['confirm_erro'] ?>
-                    				</div>
-								</div>
-							</div>
-						</div>
+						
 						<div class="row my-3 justify-content-center d-flex align-items-center">
+						    <!--
 							<a href="" class="col-2 btn_redes mx-4 px-2 py-2 bg-primary text-white d-flex align-items-center justify-content-center shadow rounded-2">
 								<div>
 									<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -86,18 +78,15 @@
 									</svg>
 								</div>
 							</a>
+							-->
 						</div>
-						<div class="row my-3">
-							<div class="input-group mb-3">
-								<input type="submit" name="" class="col mx-4 form-control btn btn-outline-primary rounded-2" value="Cadastrar">
-								<div class="col">
-									<a href="<?= URL.'/users/login'?>">Já possui uma conta? Login!</a>
-								</div>
+						<div class="row my-2">
+							<div class="col d-flex justify-content-center">
+								<a href="<?= URL.'/users/login'?>">Já possui uma conta? Login!</a>
 							</div>
 						</div>
 					</form>
-				</div>
 			</div>
-		</div>
-	</div>
-</main>
+        </section>
+    </main>
+</body>

@@ -17,7 +17,7 @@
           </button>
         <?php
         } ?>
-        <a href="<?= URL ?>" class="d-flex align-items-center mx-3 my-2 my-lg-0 me-lg-auto text-decoration-none">
+        <a href="<?= URL ?>/home" class="d-flex align-items-center mx-3 my-2 my-lg-0 me-lg-auto text-decoration-none">
           <img src="<?= TCCFUNDO ?>" width="70" height="70" class="rounded-circle">
         </a>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -31,10 +31,12 @@
         <?php } ?>
 
         <?php if ($_SESSION['id_usuario'] != null) { ?>
+        <a href="<?= URL ?>/configuracao/geral/<?= $_SESSION['id_usuario'] ?>">
           <picture>
             <source srcset="<?= $_SESSION['im_usuario'] ?>" type="image/svg+xml">
-            <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" width="60" height="60" class="img_user rounded-circle" alt="">
+            <img src="<?php if($_SESSION['im_usuario'] == null){ echo ICON."/person.png"; }elseif($_SESSION['im_usuario'] == URL."/"){echo ICON."/person.png";}else{echo $_SESSION['im_usuario']; } ?>" width="60" height="60" class="img_user rounded-circle bg-secondary" alt="">
           </picture>
+        </a>
         <?php } ?>
       </div>
     </div>
@@ -50,12 +52,12 @@
       <div class="modal-body">
 
         <ul class="list-group list-group-flush">
-          <a href="<?= URL ?>">
+          <a href="<?= URL ?>/home">
             <li class="list-group-item py-3 d-flex flex-wrap align-items-center justify-content-lg-start">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi d-block mx-2 mb-1" viewBox="0 0 16 16">
                 <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
               </svg>
-              HOME
+              Home
             </li>
           </a>
           <a href="<?= URL ?>/categoriasTCC/index">
@@ -67,6 +69,7 @@
               Categorias
             </li>
           </a>
+          <!--
           <a href="<?= URL ?>/paginas/comunidade">
             <li class="list-group-item py-3 d-flex flex-wrap align-items-center justify-content-lg-start">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi d-block mx-2 mb-1" viewBox="0 0 16 16">
@@ -77,6 +80,7 @@
               Comunidade
             </li>
           </a>
+          -->
           <a href="<?= URL ?>/dashboard/index/<?= $_SESSION['id_usuario'] ?>">
             <li class="list-group-item py-3 d-flex flex-wrap align-items-center justify-content-lg-start">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi d-block mx-2 mb-1" viewBox="0 0 16 16">
@@ -86,6 +90,7 @@
               Dashboard
             </li>
           </a>
+          <!--
           <a href="<?= URL ?>/paginas/noticias">
             <li class="list-group-item py-3 d-flex flex-wrap align-items-center justify-content-lg-start">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi d-block mx-2 mb-1" viewBox="0 0 16 16">
@@ -95,6 +100,8 @@
               Notícias
             </li>
           </a>
+          -->
+          <!--
           <a href="<?= URL ?>/paginas/planos">
             <li class="list-group-item py-3 d-flex flex-wrap align-items-center justify-content-lg-start">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi d-block mx-2 mb-1" viewBox="0 0 16 16">
@@ -104,6 +111,7 @@
               Planos
             </li>
           </a>
+          -->
         </ul>
 
       </div>

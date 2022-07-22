@@ -1,6 +1,6 @@
 <?php
 
-define("URL", "http://localhost/cludeTCC");
+define("URL", "https://localhots/cludeTCC");
 define('CSS', URL . '/theme/assets/css');
 define('JS', URL . '/theme/assets/js');
 define('IMG', URL . '/theme/assets/img');
@@ -14,8 +14,7 @@ error_reporting(0);
 define("DATA_LAYER_CONFIG", [
     "driver" => "mysql",
     "host" => "localhost",
-    "port" => "3306",
-    "dbname" => "clubedotcc",
+    "dbname" => "clubedoTCC",
     "username" => "root",
     "passwd" => "",
     "options" => [
