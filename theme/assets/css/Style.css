@@ -10,6 +10,12 @@ h1 {
     font-weight: 900;
 }
 
+.titulo_web {
+    font-family: 'Roboto', sans-serif;
+    font-size: 50;
+    font-weight: 900;
+}
+
 textarea {
     resize: none;
     outline: none;
@@ -295,7 +301,7 @@ li {
     box-shadow: 0 0 10px 0 #00000070;
     overflow: hidden;
     overflow-y: scroll;
-    transition: width 0.15s, height 0.15s;
+    transition: top 0.15s, height 0.15s;
 }
 
 .modalTCC::-webkit-scrollbar {
@@ -319,4 +325,53 @@ li {
     cursor: pointer;
     padding: 15px;
     transition: .5s all;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 5%;
+}
+
+.cont-pjt {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: grid;
+    place-items: center;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+}
+
+.modalPJT {
+    width: 0;
+    height: 0;
+    background-color: var(--bg-claro);
+    z-index: 6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 #00000070;
+    overflow: hidden;
+    overflow-y: scroll;
+    transition: width .15s, height .15s;
+}
+
+.modal-show-pjt>.modalPJT {
+    width: 45vh;
+    height: 87vh;
+}
+
+.modalPJT::-webkit-scrollbar {
+    width: 12px;
+}
+
+.modal-show-pjt {
+    opacity: 1;
+    pointer-events: auto;
 }

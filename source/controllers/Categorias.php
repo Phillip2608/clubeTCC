@@ -34,7 +34,7 @@ class Categorias
     {
         $url = $_SERVER['REQUEST_URI'];
         $var = explode("/", $url);
-        $_SESSION['id_categoria'] = $var[4];
+        $_SESSION['id_categoria'] = $var[3];
         $id_categoria = $_SESSION['id_categoria'];
         $categoria = $this->viewCategoria($id_categoria);
         $tccHumanas = $this->tccCategoria($id_categoria);
@@ -51,7 +51,7 @@ class Categorias
     {
         $url = $_SERVER['REQUEST_URI'];
         $var = explode("/", $url);
-        $_SESSION['id_categoria'] = $var[4];
+        $_SESSION['id_categoria'] = $var[3];
         $id_categoria = $_SESSION['id_categoria'];
         $categoria = $this->viewCategoria($id_categoria);
         $tccExatas = $this->tccCategoria($id_categoria);
@@ -68,7 +68,7 @@ class Categorias
     {
         $url = $_SERVER['REQUEST_URI'];
         $var = explode("/", $url);
-        $_SESSION['id_categoria'] = $var[4];
+        $_SESSION['id_categoria'] = $var[3];
         $id_categoria = $_SESSION['id_categoria'];
         $categoria = $this->viewCategoria($id_categoria);
         $tccBiologicas = $this->tccCategoria($id_categoria);

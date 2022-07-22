@@ -45,7 +45,7 @@ class Users
                     $_SESSION['nm_apelido'] = $dados['usuario']->nm_apelido;
                     $_SESSION['nm_email'] = $dados['usuario']->nm_email;
                     $_SESSION['im_usuario'] = $dados['usuario']->im_usuario;
-                    redirect("/", $dados);
+                    redirect("/home", $dados);
                 }
             }
         } else {

@@ -3,9 +3,14 @@
 namespace Source\controllers;
 
 use League\Plates\Engine;
+use Source\models\User;
+use Source\models\Categoria;
 use Source\models\TCC;
 use Source\models\Pesquisas;
 use Source\models\Docs;
+use Source\models\tipoDocs;
+use Source\models\Integrante;
+use Source\models\Cargo;
 
 
 class Paginas{
@@ -16,6 +21,10 @@ class Paginas{
     {   
         $this->view = new Engine(dirname(__DIR__, 2)."/theme/TCCweb/paginas", "php");
         $this->view->addData(["router" => $router]);
+    }
+    
+    public function landing_page(){
+        echo $this->view->render("/landing_page");
     }
 
     public function home(){
@@ -63,10 +72,12 @@ class Paginas{
         $data_tcc = filter_var_array($data, FILTER_SANITIZE_STRING);
         $docs4 = $this->viewDocs4($data_tcc['id_viewTCC']);
         $pesquisas = $this->viewPesquisas3($data_tcc['id_viewTCC']);
+        $inter = $this->integrantes($data_tcc['id_viewTCC']);
         $viewTCC = [
             'tcc' => $this->viewTCC($data_tcc['id_viewTCC']),
             'docs' => $docs4,
-            'pesq' => $pesquisas
+            'pesq' => $pesquisas,
+            'inter' => $inter
         ];
         $callback["tcc"] = $this->view->render("/modalTCC", ["tcc" => $viewTCC]);
         echo json_encode($callback);
@@ -85,6 +96,14 @@ class Paginas{
         $params = http_build_query(["tcc" => $id_tcc]);
         $pesquisas = (new Pesquisas())->find("id_tcc = :tcc", $params, "INNER JOIN tb_usuario ON tb_pesquisacampo.id_usuario = tb_usuario.id_usuario")->limit(3);
         $result = $pesquisas->fetch(true);
+        return $result;
+    }
+    
+    private function integrantes($id_tcc)
+    {
+        $params = http_build_query(["tcc" => $id_tcc]);
+        $um_inter = (new Integrante())->find("id_tcc = :tcc", $params, "INNER JOIN tb_usuario ON tb_integrante.id_usuario = tb_usuario.id_usuario INNER JOIN tb_cargo ON tb_integrante.id_cargo = tb_cargo.id_cargo");
+        $result = $um_inter->fetch(true);
         return $result;
     }
 

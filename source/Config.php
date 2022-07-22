@@ -5,7 +5,8 @@ define('CSS', URL . '/theme/assets/css');
 define('JS', URL . '/theme/assets/js');
 define('IMG', URL . '/theme/assets/img');
 define('ICON', IMG . '/icons-boots');
-define('TCC', IMG . '/Logos/grande_color.svg');
+define('TCC', IMG . '/Logos/Maximizada colorida.png');
+define('TCCFUNDO', IMG . '/Logos/fundo azul.svg');
 ini_set('display_errors', 0);
 error_reporting(0);
 

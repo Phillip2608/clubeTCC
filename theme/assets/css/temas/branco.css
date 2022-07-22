@@ -115,5 +115,18 @@ p {
     background-color: var(--bg-cinza-escuro);
 }
 
+.titulo_web {
+    color: var(--bg-cinza-escuro);
+}
+
+.modalPJT::-webkit-scrollbar {
+    background-color: var(--bg-cinza-forte);
+}
+
+.modalPJT::-webkit-scrollbar-thumb {
+    background-color: var(--bg-amarelo-fraco);
+    border-radius: 10px;
+}
+
 
 /*FIM DASHBOARD*/

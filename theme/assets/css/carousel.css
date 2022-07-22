@@ -13,7 +13,7 @@
     --slide-index: 0;
     display: flex;
     flex-grow: 1;
-    height: 35rem;
+    height: 25rem;
     margin: 0 .25rem;
     transform: translateX(calc(var(--slide-index) * -100%));
     transition: transform 250ms ease-in-out;

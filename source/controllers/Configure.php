@@ -41,13 +41,14 @@ class Configure
 
             if (in_array("", $formulario)) {
                 if (empty($formulario['nm_usuario'])) {
-                    $dados['erro_nome'] = "Coloca um nome, OTARIO!";
+                    $dados['erro_nome'] = "É necessário um nome!";
                 }
 
                 if (empty($formulario['nm_apelido'])) {
-
-                    if (empty($formulario['nm_email'])) {
-                        $dados['erro_email'] = "Coloca um email, VAGABUNDO!";
+                    if (empty($formulario['nm_usuario'])) {
+                        $dados['erro_nome'] = "É necessário um nome!";
+                    }else if (empty($formulario['nm_email'])) {
+                        $dados['erro_email'] = "É necessário um email!";
                     } else {
                         if ($img['name'] == null) {
                             $img = $dados['perfil']->im_usuario;
@@ -79,7 +80,7 @@ class Configure
                 }
 
                 if (empty($formulario['nm_email'])) {
-                    $dados['erro_email'] = "Coloca um email, VAGABUNDO!";
+                    $dados['erro_email'] = "É necessário um email!";
                 }
             } else {
                 if (strlen($formulario['nm_apelido']) > 14) {

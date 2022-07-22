@@ -18,7 +18,7 @@
         <?php
         } ?>
         <a href="<?= URL ?>" class="d-flex align-items-center mx-3 my-2 my-lg-0 me-lg-auto text-decoration-none">
-          <img src="<?= TCC ?>" width="60" height="60">
+          <img src="<?= TCCFUNDO ?>" width="70" height="70" class="rounded-circle">
         </a>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Procurar..." aria-label="Procurar">

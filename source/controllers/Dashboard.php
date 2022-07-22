@@ -69,9 +69,9 @@ class Dashboard
     {
         $url = $_SERVER['REQUEST_URI'];
         $var = explode("/", $url);
-        $_SESSION['id_tcc'] = $var[5];
+        $_SESSION['id_tcc'] = $var[4];
         $id_tcc = $_SESSION['id_tcc'];
-        $id_user = $var[4];
+        $id_user = $var[3];
         $tcc = $this->meuTCC($id_tcc);
         $docs = $this->viewDocument3($id_tcc);
         $inter = $this->integrantes3($id_tcc);
@@ -79,7 +79,6 @@ class Dashboard
         $umInter = $this->UMintegrante($id_user, $id_tcc);
 
         $tcc_categorias = $this->allCategorias();
-
 
         if ($umInter->id_tcc == $id_tcc) {
             $dados = [
@@ -111,7 +110,7 @@ class Dashboard
 
             if (isset($dados['tcc']->id_tcc)) {
                 if ($dados['tcc']->id_usuario == $id_user) {
-                    echo $this->view->render("/geral/{$_SESSION['id_usuario']}/{$dados['tcc']->id_tcc}", ["dados" => $dados]);
+                    echo $this->view->render("/geral", ["dados" => $dados]);
                 } else {
                     redirect("/dashboard/index/" . $id_user, $dados);
                 }
@@ -416,6 +415,49 @@ class Dashboard
         $pesquisa->delete("id_documento = :docs", $params);
         message('DocsOK', 'Arquivo excluido com sucesso!');
         redirect("/dashboard/documentos/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}");
+    }
+    
+    public function sistema()
+    {
+        $meuTCC = $this->meuTCC($_SESSION['id_tcc']);
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $id_tcc = $_SESSION['id_tcc'];
+        if (isset($formulario)) {
+            $dados = [
+                'Titulo' => "Sistema Web",
+                'nm_sistema' => trim($formulario['nm_sistema']),
+                'ds_link' => trim($formulario['ds_link']),
+                'ds_sistema' => trim($formulario['ds_sistema']),
+                'id_privado' => $formulario['id_privado']
+            ];
+
+            var_dump($dados);
+            if (in_array("", $formulario)) {
+                if (empty($formulario['nm_sistema'])) {
+                    $dados['erro_nome'] = "O sistema precisa de um nome!";
+                }
+
+                if (empty($formulario['ds_link'])) {
+                    $dados['erro_link'] = "O sistema precisa de um link";
+                }
+            }
+            message("SISOK", "Deu tudo certo");
+            redirect("/dashboard/sistema/{$_SESSION['id_usuario']}/{$_SESSION['id_tcc']}", $dados);
+        } else {
+            $dados = [
+                'Titulo' => "Sistema Web",
+                'nm_sistema' => '',
+                'ds_link' => '',
+                'ds_sistema' => '',
+                'id_privado' => ''
+            ];
+
+            var_dump($dados);
+        }
+
+
+
+        echo $this->view->render("/sistema", ["dados" => $dados]);
     }
 
     /**

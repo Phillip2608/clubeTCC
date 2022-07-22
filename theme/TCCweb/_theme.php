@@ -19,7 +19,7 @@
 	<!-- CSS BRUTO DO SITE -->
 	<link rel="stylesheet" href="<?= CSS ?>/cores.css">
 	<link rel='stylesheet' href="<?= CSS ?>/Style.css">
-	<link rel="stylesheet" href="<?= CSS ?>/Carousel.css">
+	<link rel="stylesheet" href="<?= CSS ?>/carousel.css">
 	<link rel="stylesheet" href="<?= CSS ?>/StyleCategorias.css">
     <?php
 	if (($_SESSION['id_tema'] == null) || ($_SESSION['id_tema'] == 1)) {
